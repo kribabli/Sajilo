@@ -1,7 +1,5 @@
 package com.sample.sajilo.LoginModule;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,12 +9,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.sample.sajilo.MainActivity;
 import com.sample.sajilo.R;
 
 public class LoginActvity extends AppCompatActivity {
     EditText email;
     EditText password1;
-    ImageView facebookLogo,googleLogo;
+    ImageView facebookLogo, googleLogo;
     TextView signUp;
 
     @Override
@@ -26,29 +27,25 @@ public class LoginActvity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login_actvity);
-       definedfunction();
-       setActionfunction();
+        definedfunction();
+        setActionfunction();
     }
 
     private void setActionfunction() {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActvity.this,SignUpActivity.class);
+                Intent intent = new Intent(LoginActvity.this, MainActivity.class);
                 startActivity(intent);
-
             }
         });
-
     }
 
     private void definedfunction() {
-        email=findViewById(R.id.email);
-        password1=findViewById(R.id.password1);
-        facebookLogo=findViewById(R.id.facebookLogo);
-        googleLogo=findViewById(R.id.googleLogo);
-        signUp=findViewById(R.id.signUp);
-
-
+        email = findViewById(R.id.email);
+        password1 = findViewById(R.id.password1);
+        facebookLogo = findViewById(R.id.facebookLogo);
+        googleLogo = findViewById(R.id.googleLogo);
+        signUp = findViewById(R.id.signUp);
     }
 }
