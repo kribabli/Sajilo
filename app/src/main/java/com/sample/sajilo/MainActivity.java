@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.sample.sajilo.BottomFragments.MyBookingFragment;
+import com.sample.sajilo.BottomFragments.MyRideFragment;
+import com.sample.sajilo.BottomFragments.VideoFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     LinearLayout mainActivityLayout;
@@ -35,12 +38,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         startActivity(intent);
                         break;
                     case R.id.my_booking:
+                        selectedFragment = new MyBookingFragment();
                         bool = true;
                         break;
                     case R.id.video:
+                        selectedFragment = new VideoFragment();
                         bool = true;
                         break;
                     case R.id.my_ride:
+                        selectedFragment = new MyRideFragment();
                         bool = true;
                         break;
                     case R.id.shop_now:
