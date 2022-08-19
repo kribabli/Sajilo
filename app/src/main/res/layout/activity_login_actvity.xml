@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/parentRelative"
-    tools:context=".LoginModule.SignUpActivity">
+    tools:context=".LoginModule.LoginActvity">
 
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_below="@+id/parentRelative"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="60dp"
         android:src="@drawable/logo"
         tools:ignore="NotSibling" />
 
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/logoImageView"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/round_rectangle"
         android:orientation="vertical"
         android:weightSum="10"
@@ -58,29 +58,14 @@
             android:textColorHint="@color/white" />
 
 
-        <EditText
-            android:id="@+id/password2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/border_radius"
-            android:hint="Confirm Password"
-            android:inputType="textVisiblePassword"
-            android:paddingLeft="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
-
-
         <Button
-            android:id="@+id/signUp"
+            android:id="@+id/login"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:backgroundTint="@color/white"
-            android:text="SIGNUP"
+            android:text="Login"
             android:textColor="#19ADEF" />
 
 
@@ -103,7 +88,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="80dp"
             android:gravity="center">
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -128,7 +113,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
             android:layout_weight="10"
             android:orientation="horizontal">
 
@@ -138,18 +123,18 @@
                 android:layout_marginLeft="50dp"
                 android:layout_weight="7"
                 android:gravity="center_horizontal"
-                android:text="Already Have an Account?"
+                android:text="Don't Have an Account?"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
 
             <TextView
-                android:id="@+id/login"
+                android:id="@+id/signUp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_weight="3"
-                android:text="Login"
+                android:text="Signup"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
