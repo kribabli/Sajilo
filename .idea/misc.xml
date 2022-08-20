@@ -5,12 +5,17 @@
       <map>
         <entry key="..\:/BabliOffice/Sajilo/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/border_radius.xml" value="0.1" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/ic_baseline_format_list_bulleted_24.xml" value="0.1" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/round_rectangle.xml" value="0.1" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/sajilosplash.xml" value="0.1" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/white_border.xml" value="0.1" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/activity_login_actvity.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/activity_main.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/activity_shop_now.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/activity_sign_up.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/activity_splash_screen.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/fragment_shop_now.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/fragment_video.xml" value="0.19895833333333332" />
       </map>
     </option>
   </component>
