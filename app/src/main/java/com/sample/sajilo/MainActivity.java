@@ -1,16 +1,21 @@
 package com.sample.sajilo;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.sample.sajilo.BottomFragments.MyBookingFragment;
@@ -18,16 +23,27 @@ import com.sample.sajilo.BottomFragments.MyRideFragment;
 import com.sample.sajilo.BottomFragments.VideoFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    LinearLayout mainActivityLayout;
     Fragment selectedFragment = null;
     Toolbar toolbar;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new Thread(this::mBottomNavigationBar).start();
-        toolbar=findViewById(R.id.toolbar);
+        initMethod();
+        setAction();
+        googleSignIn();
+    }
+
+    private void initMethod() {
+        toolbar = findViewById(R.id.toolbar);
+    }
+
+    private void setAction() {
+
     }
 
     private void mBottomNavigationBar() {
@@ -71,5 +87,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
+    }
+
+    private void googleSignIn() {
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this, gso);
+        GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this);
+        if (googleSignInAccount != null) {
+            String userName = googleSignInAccount.getDisplayName();
+            String userEmail = googleSignInAccount.getEmail();
+            Uri photoUrl = googleSignInAccount.getPhotoUrl();
+            String id = googleSignInAccount.getId();
+            Log.d("TAG", "onCreate: " + id + "  " + userName + "  " + userEmail + "  " + photoUrl);
+        }
     }
 }

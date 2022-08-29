@@ -9,11 +9,17 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.sample.sajilo.LoginModule.LoginActvity;
 
 public class Splash_Screen extends AppCompatActivity {
     ImageView logoImageView;
     Handler handler;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +31,21 @@ public class Splash_Screen extends AppCompatActivity {
         logoImageView = (ImageView) findViewById(R.id.logoImageView);
 //        Animation slideAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.side_slide);
 //        logoImageView.startAnimation(slideAnimation);
-        animatedfunction();
-    }
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this, gso);
+        GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this);
 
-    private void animatedfunction() {
         handler = new Handler();
         handler.postDelayed(() -> {
-            Intent intent = new Intent(Splash_Screen.this, LoginActvity.class);
-            startActivity(intent);
-            finish();
-
+            if (googleSignInAccount != null) {
+                Intent intent = new Intent(Splash_Screen.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Intent intent = new Intent(Splash_Screen.this, LoginActvity.class);
+                startActivity(intent);
+                finish();
+            }
         }, 3000);
     }
 }
