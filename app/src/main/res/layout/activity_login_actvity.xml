@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentRelative"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/parentRelative"
     tools:context=".LoginModule.LoginActvity">
 
     <ImageView
@@ -21,12 +21,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/logoImageView"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/round_rectangle"
         android:orientation="vertical"
         android:weightSum="10"
         tools:ignore="NotSibling">
-
 
         <EditText
             android:id="@+id/email"
@@ -42,7 +41,6 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
-
         <EditText
             android:id="@+id/password1"
             android:layout_width="match_parent"
@@ -57,7 +55,6 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
-
         <Button
             android:id="@+id/login"
             android:layout_width="220dp"
@@ -67,7 +64,6 @@
             android:backgroundTint="@color/white"
             android:text="Login"
             android:textColor="#19ADEF" />
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,7 +77,6 @@
                 android:layout_height="1dp"
                 android:layout_weight="10"
                 android:background="@color/white" />
-
 
         </LinearLayout>
 
@@ -98,7 +93,6 @@
                 android:layout_gravity="center"
                 android:src="@drawable/ic_facebook_svgrepo_com" />
 
-
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/googleLogo"
                 android:layout_width="wrap_content"
@@ -106,9 +100,7 @@
                 android:paddingLeft="50dp"
                 android:src="@drawable/ic_google_svgrepo_com" />
 
-
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -127,7 +119,6 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-
             <TextView
                 android:id="@+id/signUp"
                 android:layout_width="0dp"
@@ -139,9 +130,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-
         </LinearLayout>
-
 
     </LinearLayout>
 
