@@ -8,9 +8,13 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -24,22 +28,42 @@ import com.sample.sajilo.BottomFragments.VideoFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Fragment selectedFragment = null;
+    DrawerLayout drawerLayout;
     Toolbar toolbar;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new Thread(this::mBottomNavigationBar).start();
+        fragmentManager = getSupportFragmentManager();
         initMethod();
         setAction();
         googleSignIn();
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_format_list_bulleted_24);
     }
 
     private void initMethod() {
         toolbar = findViewById(R.id.toolbar);
+        drawerLayout = findViewById(R.id.drawerLayout);
     }
 
     private void setAction() {
@@ -58,16 +82,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         startActivity(intent);
                         break;
                     case R.id.my_booking:
-                        selectedFragment = new MyBookingFragment();
+                        MyBookingFragment homeFragment = new MyBookingFragment();
+                        loadfragment(homeFragment, "", fragmentManager);
                         bool = true;
                         break;
                     case R.id.video:
-                        selectedFragment = new VideoFragment();
+                        VideoFragment videoFragment = new VideoFragment();
+                        loadfragment(videoFragment, "", fragmentManager);
                         toolbar.setVisibility(View.GONE);
                         bool = true;
                         break;
                     case R.id.my_ride:
-                        selectedFragment = new MyRideFragment();
+                        MyRideFragment myRideFragment = new MyRideFragment();
+                        loadfragment(myRideFragment, "", fragmentManager);
                         bool = true;
                         break;
                     case R.id.shop_now:
@@ -77,9 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                 }
             }
-            if (selectedFragment != null) {
-                MainActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-            }
+
             return bool;
         });
     }
@@ -87,6 +112,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         return false;
+    }
+
+    public void loadfragment(Fragment f1, String name, FragmentManager fm){
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container, f1, name);
+        ft.commit();
+
     }
 
     private void googleSignIn() {
