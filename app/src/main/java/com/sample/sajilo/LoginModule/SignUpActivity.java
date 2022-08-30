@@ -2,6 +2,7 @@ package com.sample.sajilo.LoginModule;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,6 +16,9 @@ import com.sample.sajilo.Common.NetworkConnection;
 import com.sample.sajilo.Model.RegisterResponse;
 import com.sample.sajilo.R;
 import com.sample.sajilo.Retrofit.ApiClient;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,7 +59,8 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         signUp.setOnClickListener(view -> {
-            check_signUp();
+//            check_signUp();
+            validation();
         });
     }
 
@@ -69,28 +74,27 @@ public class SignUpActivity extends AppCompatActivity {
 
     private boolean validation() {
         boolean istrue = true;
-        email_id = email.getText().toString();
-        mobileNo = mobile_no.getText().toString();
-        password = password1.getText().toString();
         user = userName.getText().toString();
+        email_id = email.getText().toString();
+        password = password1.getText().toString();
+        mobileNo = mobile_no.getText().toString();
         try {
-            if (email.getText().toString().trim().length() == 0) {
+            if (userName.getText().toString().trim().length() == 0) {
+                userName.setError("Please enter name");
+                userName.requestFocus();
+                istrue = false;
+            } else if (email.getText().toString().trim().length() == 0) {
                 email.setError("Please enter email id");
                 email.requestFocus();
-                istrue = false;
-            } else if (mobile_no.getText().toString().trim().length() == 0 || mobile_no.getText().toString().trim().length() < 10) {
-                mobile_no.setError("Please enter your mobile");
-                mobile_no.requestFocus();
                 istrue = false;
             } else if (password1.getText().toString().trim().length() == 0 || password1.getText().toString().trim().length() < 6) {
                 password1.setError("Please enter password");
                 password1.requestFocus();
                 istrue = false;
-            } else if (userName.getText().toString().trim().length() == 0) {
-                userName.setError("Please enter password");
-                userName.requestFocus();
+            } else if (mobile_no.getText().toString().trim().length() == 0 || mobile_no.getText().toString().trim().length() < 10) {
+                mobile_no.setError("Please enter your mobile");
+                mobile_no.requestFocus();
                 istrue = false;
-
             } else {
                 SendUserData();
             }
@@ -101,29 +105,50 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void SendUserData() {
-        Call<RegisterResponse> call = ApiClient.getInstance().getApi().
-                SendUserDetails(userName.getText().toString(), email.getText().toString(), password1.getText().toString(), mobile_no.getText().toString());
-        call.enqueue(new Callback<RegisterResponse>() {
-            @Override
-            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                RegisterResponse registerResponse = response.body();
-                if (response.isSuccessful()) {
-                    if (registerResponse.getResponseMsg().equalsIgnoreCase("Email Address Already Used!")) {
-                        showDialog("" + registerResponse.getResponseCode(), true);
-                    }
-                    if (registerResponse.getResponseMsg().equalsIgnoreCase("Mobile Number Already Used!")) {
-                        showDialog("" + registerResponse.getResult(), true);
-                    }
-                    if (registerResponse.getResponseMsg().equalsIgnoreCase("Sign Up Done Successfully!")) {
-                        showDialog("User Register Successfully..", true);
+        Log.d("TAG", "SendUserData1: ");
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("username", userName.getText().toString());
+            jsonObject.put("email", email.getText().toString());
+            jsonObject.put("mobile", mobile_no.getText().toString());
+            jsonObject.put("password", password1.getText().toString());
+            Call<RegisterResponse> call = ApiClient.getInstance().getApi().
+                    SendUserDetails(jsonObject);
+            call.enqueue(new Callback<RegisterResponse>() {
+                @Override
+                public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                    RegisterResponse registerResponse = response.body();
+                    Log.d("TAG", "onResponse22: " + registerResponse);
+                    if (response.isSuccessful()) {
+                        Log.d("TAG", "SendUserData12: ");
+                        if (registerResponse.getResponseMsg().equalsIgnoreCase("Email Address Already Used!")) {
+
+                            Log.d("TAG", "SendUserData13: ");
+                            showDialog("" + registerResponse.getResult(), true);
+                        }
+                        if (registerResponse.getResponseMsg().equalsIgnoreCase("Mobile Number Already Used!")) {
+
+                            Log.d("TAG", "SendUserData14: ");
+                            showDialog("" + registerResponse.getResult(), true);
+                        }
+                        if (registerResponse.getResponseMsg().equalsIgnoreCase("Sign Up Done Successfully!")) {
+
+                            Log.d("TAG", "SendUserData15: ");
+                            showDialog("User Register Successfully..", true);
+                        }
+                    } else {
+                        Log.d("TAG", "onResponse: " + response.body());
                     }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<RegisterResponse> call, Throwable t) {
-            }
-        });
+                @Override
+                public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                    Log.d("TAG", "onFailure: " + t);
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showToast(String msg) {
