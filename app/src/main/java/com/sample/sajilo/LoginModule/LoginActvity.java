@@ -2,6 +2,7 @@ package com.sample.sajilo.LoginModule;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -56,6 +57,13 @@ public class LoginActvity extends AppCompatActivity {
         });
 
         googleLogo.setOnClickListener(view -> signIn());
+
+        facebookLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                facebookLogin();
+            }
+        });
     }
 
     private void signIn() {
@@ -82,5 +90,9 @@ public class LoginActvity extends AppCompatActivity {
         intent.putExtra("checkData", true);
         startActivity(intent);
         finish();
+    }
+
+    private void facebookLogin() {
+
     }
 }

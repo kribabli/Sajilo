@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">Sajilo</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="loading">Loading</string>
-    <string name="conne_msg">No Network Connection!!!</string>
-
+    <string name="connection_msg">No Network Connection!!!</string>
     <string name="remember_me">Remember Me</string>
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
