@@ -3,14 +3,17 @@ package com.sample.sajilo;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -22,17 +25,21 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.sample.sajilo.BottomFragments.HomeFragment;
 import com.sample.sajilo.BottomFragments.MyBookingFragment;
 import com.sample.sajilo.BottomFragments.MyRideFragment;
 import com.sample.sajilo.BottomFragments.VideoFragment;
+import com.sample.sajilo.ServicesRelatedFragment.myServicesFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Fragment selectedFragment = null;
+    boolean doubleBackToExitPressedOnce = false;
     DrawerLayout drawerLayout;
-    Toolbar toolbar;
+    Toolbar toolbar_main;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     private FragmentManager fragmentManager;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +47,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         new Thread(this::mBottomNavigationBar).start();
         fragmentManager = getSupportFragmentManager();
+        toolbar_main = findViewById(R.id.toolbar_main);
+        setSupportActionBar(toolbar_main);
         initMethod();
         setAction();
         googleSignIn();
 
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
+
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar_main, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
@@ -58,11 +69,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_format_list_bulleted_24);
+        toolbar_main.setNavigationIcon(R.drawable.ic_baseline_format_list_bulleted_24);
+
+        NavigationView navigationView=findViewById(R.id.navigationView);
+        navigationView.setNavigationItemSelectedListener(item -> {
+            drawerLayout.closeDrawers();
+            switch (item.getItemId()) {
+                case R.id.menu_go_home:
+                    HomeFragment homeFragment = new HomeFragment();
+                    loadfragment(homeFragment, getString(R.string.menu_home), fragmentManager);
+                    return true;
+                case R.id.menu_go_to_profile:
+                    Intent intent=new Intent(MainActivity.this,MyProfile.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.menu_go_services:
+                    myServicesFragment my=new myServicesFragment();
+                    loadfragment(my, "My Services", fragmentManager);
+                    return true;
+                case R.id.menu_go_logout:
+                    userlogout();
+                    return true;
+                default:
+                    return true;
+
+            }
+
+        });
+
+
+
+        HomeFragment homeFragment = new HomeFragment();
+        loadfragment(homeFragment, "Home", fragmentManager);
+    }
+
+    private void userlogout() {
     }
 
     private void initMethod() {
-        toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.drawerLayout);
     }
 
@@ -78,24 +122,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 switch (item.getItemId()) {
                     case R.id.home:
                         bool = true;
-                        Intent intent = new Intent(MainActivity.this, MyProfile.class);
-                        startActivity(intent);
+                        HomeFragment homeFragment1=new HomeFragment();
+                        loadfragment(homeFragment1,"Home",fragmentManager);
                         break;
                     case R.id.my_booking:
                         MyBookingFragment homeFragment = new MyBookingFragment();
-                        loadfragment(homeFragment, "", fragmentManager);
+                        loadfragment(homeFragment, "MyBooking", fragmentManager);
                         bool = true;
                         break;
                     case R.id.video:
                         VideoFragment videoFragment = new VideoFragment();
-                        loadfragment(videoFragment, "", fragmentManager);
-                        toolbar.setVisibility(View.GONE);
+                        loadfragment(videoFragment, "Video", fragmentManager);
                         bool = true;
                         break;
                     case R.id.my_ride:
                         MyRideFragment myRideFragment = new MyRideFragment();
-                        loadfragment(myRideFragment, "", fragmentManager);
-                        bool = true;
+                        loadfragment(myRideFragment, "MyRide", fragmentManager);
+                        bool=true;
                         break;
                     case R.id.shop_now:
                         Intent intent1 = new Intent(MainActivity.this, ShopNow.class);
@@ -121,7 +164,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container, f1, name);
         ft.commit();
+        setToolbarTitle(name);
 
+    }
+
+    public void setToolbarTitle(String Title) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(Title);
+        }
     }
 
     private void googleSignIn() {
@@ -136,4 +186,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Log.d("TAG", "onCreate: " + id + "  " + userName + "  " + userEmail + "  " + photoUrl);
         }
     }
-}
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else if (fragmentManager.getBackStackEntryCount() != 0) {
+            String tag = fragmentManager.getFragments().get(fragmentManager.getBackStackEntryCount() - 1).getTag();
+            setToolbarTitle(tag);
+            super.onBackPressed();
+        } else {
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, getString(R.string.back_key), Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 1000);
+        }
+    }
+    }

@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -14,66 +13,13 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <androidx.appcompat.widget.Toolbar
+        <include
             android:id="@+id/toolbar"
+            layout="@layout/row_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:titleTextColor="#fff">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <TextView
-                    android:id="@+id/profileView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textColor="#ffff"
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4" />
-
-                <TextView
-                    android:id="@+id/notification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/walletTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right" />
-
-            </LinearLayout>
-
-        </androidx.appcompat.widget.Toolbar>
+            android:visibility="visible"
+            android:layout_alignParentTop="true" />
 
         <LinearLayout
             android:id="@+id/fragment_container"
@@ -86,25 +32,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/mainActivityLayout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/view_bannerItem"
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_below="@+id/toolbar1"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp" />
-
-        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -130,11 +58,16 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/NavigationView"
+        android:id="@+id/navigationView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        app:headerLayout="@layout/header"
+        android:background="@color/white"
+        app:itemBackground="@drawable/nav_item_bg"
+        app:itemIconTint="@color/state_list"
+        app:itemTextColor="@color/state_list"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:itemTextAppearance="?android:attr/textAppearanceMedium" />
+        app:menu="@menu/side_nav_bar"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

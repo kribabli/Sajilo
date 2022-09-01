@@ -6,6 +6,10 @@
         <entry key="..\:/BabliOffice/Sajilo/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/border_radius.xml" value="0.1" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/ic_baseline_format_list_bulleted_24.xml" value="0.1" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/ic_logout.xml" value="0.124" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/ic_services.xml" value="0.124" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/nav_item_bg.xml" value="0.124" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/nav_shape.xml" value="0.124" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/round_rectangle.xml" value="0.1" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/sajilosplash.xml" value="0.1" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/white_border.xml" value="0.1" />
@@ -14,8 +18,13 @@
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/activity_shop_now.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/activity_sign_up.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/activity_splash_screen.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/fragment_my_services.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/fragment_shop_now.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/fragment_video.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/header.xml" value="0.19791666666666666" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/left_nav_header.xml" value="0.16324786324786325" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/layout/row_toolbar.xml" value="0.19791666666666666" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/menu/side_nav_bar.xml" value="0.19791666666666666" />
       </map>
     </option>
   </component>
