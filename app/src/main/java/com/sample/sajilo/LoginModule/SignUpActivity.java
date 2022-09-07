@@ -3,26 +3,31 @@ package com.sample.sajilo.LoginModule;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.sample.sajilo.Common.NetworkConnection;
-import com.sample.sajilo.Model.RegisterResponse;
 import com.sample.sajilo.R;
-import com.sample.sajilo.Retrofit.ApiClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
     TextView login;
@@ -31,6 +36,8 @@ public class SignUpActivity extends AppCompatActivity {
     ImageView facebookLogo;
     ImageView googleLogo;
     String email_id, password, mobileNo, user;
+    String url = "http://adminapp.tech/Sajilo/capi/registeruser.php";
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
         signUp = findViewById(R.id.signUp);
         facebookLogo = findViewById(R.id.facebookLogo);
         googleLogo = findViewById(R.id.googleLogo);
+        progressBar=findViewById(R.id.progressBar);
     }
 
     private void setAction() {
@@ -96,7 +104,7 @@ public class SignUpActivity extends AppCompatActivity {
                 mobile_no.requestFocus();
                 istrue = false;
             } else {
-                SendUserData();
+                SendUserData( user,email_id,password,mobileNo);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,51 +112,54 @@ public class SignUpActivity extends AppCompatActivity {
         return istrue;
     }
 
-    private void SendUserData() {
-        Log.d("TAG", "SendUserData1: ");
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("username", userName.getText().toString());
-            jsonObject.put("email", email.getText().toString());
-            jsonObject.put("mobile", mobile_no.getText().toString());
-            jsonObject.put("password", password1.getText().toString());
-            Call<RegisterResponse> call = ApiClient.getInstance().getApi().
-                    SendUserDetails(jsonObject);
-            call.enqueue(new Callback<RegisterResponse>() {
-                @Override
-                public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                    RegisterResponse registerResponse = response.body();
-                    Log.d("TAG", "onResponse22: " + registerResponse);
-                    if (response.isSuccessful()) {
-                        Log.d("TAG", "SendUserData12: ");
-                        if (registerResponse.getResponseMsg().equalsIgnoreCase("Email Address Already Used!")) {
+    private void SendUserData(String user, String email_id, String password, String mobileNo) throws JSONException {
+        RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("username",user);
+        jsonObject.put("password",password);
+        jsonObject.put("email",email_id);
+        jsonObject.put("mobile",mobileNo);
+        progressBar.setVisibility(View.VISIBLE);
+        signUp.setVisibility(View.GONE);
 
-                            Log.d("TAG", "SendUserData13: ");
-                            showDialog("" + registerResponse.getResult(), true);
-                        }
-                        if (registerResponse.getResponseMsg().equalsIgnoreCase("Mobile Number Already Used!")) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
 
-                            Log.d("TAG", "SendUserData14: ");
-                            showDialog("" + registerResponse.getResult(), true);
-                        }
-                        if (registerResponse.getResponseMsg().equalsIgnoreCase("Sign Up Done Successfully!")) {
+                            JSONObject jsonObject1=new JSONObject(String.valueOf(response.getJSONObject("UserLogin")));
+                          if(response.getString("Result").equalsIgnoreCase("false")){
+                              progressBar.setVisibility(View.GONE);
+                              signUp.setVisibility(View.VISIBLE);
+                              showDialog(response.getString("ResponseMsg"),false);
+                              showToast(response.getString("ResponseMsg"));
 
-                            Log.d("TAG", "SendUserData15: ");
-                            showDialog("User Register Successfully..", true);
+                          }
+                          if(response.getString("Result").equalsIgnoreCase("true")){
+                              progressBar.setVisibility(View.GONE);
+                              signUp.setVisibility(View.VISIBLE);
+                              showToast(response.getString("ResponseMsg"));
+                              Intent intent=new Intent(SignUpActivity.this,LoginActvity.class);
+                              startActivity(intent);
+                              finish();
+
+
+                          }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } else {
-                        Log.d("TAG", "onResponse: " + response.body());
                     }
-                }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+                signUp.setVisibility(View.VISIBLE);
+                showToast("Please Register....");
 
-                @Override
-                public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                    Log.d("TAG", "onFailure: " + t);
-                }
-            });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            }
+        });
+        queue.add(jsonObjectRequest);
     }
 
     public void showToast(String msg) {

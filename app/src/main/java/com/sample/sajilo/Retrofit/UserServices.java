@@ -1,6 +1,8 @@
 package com.sample.sajilo.Retrofit;
 
+import com.sample.sajilo.Model.CategoryReponse;
 import com.sample.sajilo.Model.RegisterResponse;
+import com.sample.sajilo.ServicesRelatedFragment.Category;
 
 import org.json.JSONObject;
 
@@ -10,9 +12,8 @@ import retrofit2.http.POST;
 
 public interface UserServices {
 
-    @POST("registeruser")
-    Call<RegisterResponse> SendUserDetails(
-            @Body JSONObject locationPost
-    );
+    @POST("categorylist.php")
+    Call<CategoryReponse> getCategeoryDetails(
+            );
 
 }

@@ -13,12 +13,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.sample.sajilo.Common.HelperData;
 import com.sample.sajilo.LoginModule.LoginActvity;
 
 public class Splash_Screen extends AppCompatActivity {
     ImageView logoImageView;
     Handler handler;
     GoogleSignInOptions gso;
+    HelperData helperData;
     GoogleSignInClient gsc;
 
     @Override
@@ -28,6 +30,7 @@ public class Splash_Screen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
+        helperData=new HelperData(getApplicationContext());
         logoImageView = (ImageView) findViewById(R.id.logoImageView);
 //        Animation slideAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.side_slide);
 //        logoImageView.startAnimation(slideAnimation);
@@ -37,7 +40,7 @@ public class Splash_Screen extends AppCompatActivity {
 
         handler = new Handler();
         handler.postDelayed(() -> {
-            if (googleSignInAccount != null) {
+            if (googleSignInAccount != null || helperData.getIsLogin()) {
                 Intent intent = new Intent(Splash_Screen.this, MainActivity.class);
                 startActivity(intent);
                 finish();

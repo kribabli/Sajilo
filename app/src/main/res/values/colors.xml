@@ -13,4 +13,5 @@
     <color name="gray">#4A5E70</color>
     <color name="blue1">#4DC3F8</color>
     <color name="primary">#19Adef</color>
+    <color name="genre_view_bg">#80000000</color>
 </resources>

@@ -4,6 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/BabliOffice/Sajilo/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/drawable/image_genre_bg.xml" value="0.126" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/layout/activity_login_actvity.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/layout/activity_sign_up.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/layout/fragment_category.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/layout/fragment_my_services.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/layout/single_category_row.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/border_radius.xml" value="0.1" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/ic_baseline_format_list_bulleted_24.xml" value="0.1" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApplication/Sajilo/app/src/main/res/drawable/ic_logout.xml" value="0.124" />

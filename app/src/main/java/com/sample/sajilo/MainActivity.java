@@ -1,5 +1,6 @@
 package com.sample.sajilo;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import com.sample.sajilo.BottomFragments.HomeFragment;
 import com.sample.sajilo.BottomFragments.MyBookingFragment;
 import com.sample.sajilo.BottomFragments.MyRideFragment;
 import com.sample.sajilo.BottomFragments.VideoFragment;
+import com.sample.sajilo.LoginModule.LoginActvity;
 import com.sample.sajilo.ServicesRelatedFragment.myServicesFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -104,6 +106,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void userlogout() {
+        Intent intent = new Intent(getApplicationContext(), LoginActvity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+        Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show();
+
     }
 
     private void initMethod() {

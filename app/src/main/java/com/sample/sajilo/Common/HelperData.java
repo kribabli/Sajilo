@@ -5,78 +5,61 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class HelperData extends Application {
-    private static HelperData mInstance;
-    public SharedPreferences preferences;
-    public String prefName = "SajiloApp";
+    private static String SHARED_PREF_NAME1 = "Sajilo";
+    private SharedPreferences sharedPreferences;
+    Context context;
+    private SharedPreferences.Editor editor;
 
-
-    public HelperData() {
-        mInstance = this;
-    }
-
-
-
-    public static synchronized HelperData getInstance() {
-        return mInstance;
-    }
-
-    public void saveIsIntroduction(boolean flag) {
-        preferences = this.getSharedPreferences(prefName, 0);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("IsIntroduction", flag);
-        editor.apply();
-    }
-
-    public boolean getIsIntroduction() {
-        preferences = this.getSharedPreferences(prefName, 0);
-        return preferences.getBoolean("IsIntroduction", false);
+    public HelperData(Context context) {
+        this.context = context;
     }
 
 
     public void saveIsLogin(boolean flag) {
-        preferences = this.getSharedPreferences(prefName, 0);
-        SharedPreferences.Editor editor = preferences.edit();
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         editor.putBoolean("IsLoggedIn", flag);
         editor.apply();
     }
+
     public boolean getIsLogin() {
-        preferences = this.getSharedPreferences(prefName, 0);
-        return preferences.getBoolean("IsLoggedIn", false);
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean("IsLoggedIn", false);
     }
 
     public void saveIsRemember(boolean flag) {
-        preferences = this.getSharedPreferences(prefName, 0);
-        SharedPreferences.Editor editor = preferences.edit();
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         editor.putBoolean("IsLoggedRemember", flag);
         editor.apply();
     }
 
     public boolean getIsRemember() {
-        preferences = this.getSharedPreferences(prefName, 0);
-        return preferences.getBoolean("IsLoggedRemember", false);
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean("IsLoggedRemember", false);
     }
 
     public void saveRemember(String email, String password) {
-        preferences = this.getSharedPreferences(prefName, 0);
-        SharedPreferences.Editor editor = preferences.edit();
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         editor.putString("remember_email", email);
         editor.putString("remember_password", password);
         editor.apply();
     }
 
     public String getRememberEmail() {
-        preferences = this.getSharedPreferences(prefName, 0);
-        return preferences.getString("remember_email", "");
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("remember_email", "");
     }
 
     public String getRememberPassword() {
-        preferences = this.getSharedPreferences(prefName, 0);
-        return preferences.getString("remember_password", "");
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("remember_password", "");
     }
 
     public void saveLogin(String user_id, String user_name, String email) {
-        preferences = this.getSharedPreferences(prefName, 0);
-        SharedPreferences.Editor editor = preferences.edit();
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         editor.putString("user_id", user_id);
         editor.putString("user_name", user_name);
         editor.putString("email", email);
@@ -85,18 +68,18 @@ public class HelperData extends Application {
 
 
     public String getUserId() {
-        preferences = this.getSharedPreferences(prefName, 0);
-        return preferences.getString("user_id", "");
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("user_id", "");
     }
 
     public String getUserName() {
-        preferences = this.getSharedPreferences(prefName, 0);
-        return preferences.getString("user_name", "");
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("user_name", "");
     }
 
     public String getUserEmail() {
-        preferences = this.getSharedPreferences(prefName, 0);
-        return preferences.getString("email", "");
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("email", "");
     }
 
 
