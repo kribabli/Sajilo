@@ -1,6 +1,5 @@
 package com.sample.sajilo;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,19 +28,18 @@ import com.google.android.material.navigation.NavigationView;
 import com.sample.sajilo.BottomFragments.HomeFragment;
 import com.sample.sajilo.BottomFragments.MyBookingFragment;
 import com.sample.sajilo.BottomFragments.MyRideFragment;
+import com.sample.sajilo.BottomFragments.ShopNowFragment;
 import com.sample.sajilo.BottomFragments.VideoFragment;
 import com.sample.sajilo.LoginModule.LoginActvity;
 import com.sample.sajilo.ServicesRelatedFragment.myServicesFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    Fragment selectedFragment = null;
     boolean doubleBackToExitPressedOnce = false;
     DrawerLayout drawerLayout;
     Toolbar toolbar_main;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     private FragmentManager fragmentManager;
-    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case R.id.my_booking:
                         MyBookingFragment homeFragment = new MyBookingFragment();
-                        loadfragment(homeFragment, "MyBooking", fragmentManager);
+                        loadfragment(homeFragment, "My Booking", fragmentManager);
                         bool = true;
                         break;
                     case R.id.video:
@@ -136,12 +134,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         break;
                     case R.id.my_ride:
                         MyRideFragment myRideFragment = new MyRideFragment();
-                        loadfragment(myRideFragment, "MyRide", fragmentManager);
+                        loadfragment(myRideFragment, "My Ride", fragmentManager);
                         bool = true;
                         break;
                     case R.id.shop_now:
-                        Intent intent1 = new Intent(MainActivity.this, ShopNow.class);
-                        startActivity(intent1);
+                        ShopNowFragment shopNowFragment = new ShopNowFragment();
+                        loadfragment(shopNowFragment, "Shop Now", fragmentManager);
                         bool = true;
                         break;
                 }

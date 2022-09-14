@@ -12,5 +12,5 @@
     <string name="menu_servies">Services</string>
     <string name="menu_log_out">Logout</string>
     <string name="tag_line">Welcome Sajilo</string>
-    <string name="back_key">Please click BACK again to exit</string>
+    <string name="back_key">Please click back again to exit</string>
 </resources>
