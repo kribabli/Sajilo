@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.sample.sajilo.Model.CategoryDataResponse;
 import com.sample.sajilo.R;
@@ -35,6 +36,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.MyViewHolder holder, int position) {
         holder.text.setText(""+list.get(position).getCat_name());
+        Glide.with(context)
+                .load("http://adminapp.tech/Sajilo/"+list.get(position).getCat_img())
+                .into(holder.image);
+
+
 
     }
 

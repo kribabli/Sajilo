@@ -67,9 +67,7 @@ public class Category extends Fragment {
 
     private void getCategory() {
         showProgress(true);
-
         Call<CategoryReponse> call= ApiClient.getInstance().getApi().getCategeoryDetails();
-
         call.enqueue(new Callback<CategoryReponse>() {
             @Override
             public void onResponse(Call<CategoryReponse> call, Response<CategoryReponse> response) {
@@ -91,8 +89,10 @@ public class Category extends Fragment {
                                 String id = jsonObject.getString("id");
                                 CategoryDataResponse categoryReponse1 = new CategoryDataResponse(id, cat_name, cat_status, cat_img);
                                 mListItem.add(categoryReponse1);
+                                    Log.d("Amit","Value "+cat_img);
 
                             }
+
                                 adapter=new CategoryAdapter(mListItem,getContext());
                                 recyclerView.setAdapter(adapter);
                         } else{
