@@ -5,14 +5,15 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 public class CategoryReponse {
-
     @SerializedName("data")
     private ArrayList<CategoryDataResponse> data;
 
     @SerializedName("ResponseCode")
-     String ResponseCode;
+    String ResponseCode;
+
     @SerializedName("Result")
     String Result;
+
     @SerializedName("ResponseMsg")
     String ResponseMsg;
 

@@ -1,7 +1,6 @@
 package com.sample.sajilo.Model;
 
 public class CategoryDataResponse {
-
     String id;
     String cat_name;
     String cat_status;

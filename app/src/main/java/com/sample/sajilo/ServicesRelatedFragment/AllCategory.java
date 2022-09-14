@@ -12,8 +12,6 @@ import com.sample.sajilo.R;
 
 public class AllCategory extends Fragment {
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

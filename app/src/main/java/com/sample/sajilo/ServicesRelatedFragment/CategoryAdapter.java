@@ -17,7 +17,7 @@ import com.sample.sajilo.R;
 
 import java.util.List;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder>  {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
     List<CategoryDataResponse> list;
     Context context;
 
@@ -35,13 +35,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.MyViewHolder holder, int position) {
-        holder.text.setText(""+list.get(position).getCat_name());
+        holder.text.setText("" + list.get(position).getCat_name());
         Glide.with(context)
-                .load("http://adminapp.tech/Sajilo/"+list.get(position).getCat_img())
+                .load("http://adminapp.tech/Sajilo/" + list.get(position).getCat_img())
                 .into(holder.image);
-
-
-
     }
 
     @Override
@@ -53,6 +50,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         RoundedImageView image;
         TextView text;
         CardView cardView;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);

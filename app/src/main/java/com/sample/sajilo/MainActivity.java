@@ -55,8 +55,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setAction();
         googleSignIn();
 
-
-
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar_main, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -73,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.syncState();
         toolbar_main.setNavigationIcon(R.drawable.ic_baseline_format_list_bulleted_24);
 
-        NavigationView navigationView=findViewById(R.id.navigationView);
+        NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(item -> {
             drawerLayout.closeDrawers();
             switch (item.getItemId()) {
@@ -82,11 +80,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     loadfragment(homeFragment, getString(R.string.menu_home), fragmentManager);
                     return true;
                 case R.id.menu_go_to_profile:
-                    Intent intent=new Intent(MainActivity.this,MyProfile.class);
+                    Intent intent = new Intent(MainActivity.this, MyProfile.class);
                     startActivity(intent);
                     return true;
                 case R.id.menu_go_services:
-                    myServicesFragment my=new myServicesFragment();
+                    myServicesFragment my = new myServicesFragment();
                     loadfragment(my, "My Services", fragmentManager);
                     return true;
                 case R.id.menu_go_logout:
@@ -94,13 +92,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     return true;
                 default:
                     return true;
-
             }
-
         });
-
-
-
         HomeFragment homeFragment = new HomeFragment();
         loadfragment(homeFragment, "Home", fragmentManager);
     }
@@ -111,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
         finish();
         Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show();
-
     }
 
     private void initMethod() {
@@ -119,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void setAction() {
-
     }
 
     private void mBottomNavigationBar() {
@@ -130,8 +121,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 switch (item.getItemId()) {
                     case R.id.home:
                         bool = true;
-                        HomeFragment homeFragment1=new HomeFragment();
-                        loadfragment(homeFragment1,"Home",fragmentManager);
+                        HomeFragment homeFragment1 = new HomeFragment();
+                        loadfragment(homeFragment1, "Home", fragmentManager);
                         break;
                     case R.id.my_booking:
                         MyBookingFragment homeFragment = new MyBookingFragment();
@@ -146,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case R.id.my_ride:
                         MyRideFragment myRideFragment = new MyRideFragment();
                         loadfragment(myRideFragment, "MyRide", fragmentManager);
-                        bool=true;
+                        bool = true;
                         break;
                     case R.id.shop_now:
                         Intent intent1 = new Intent(MainActivity.this, ShopNow.class);
@@ -165,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
-    public void loadfragment(Fragment f1, String name, FragmentManager fm){
+    public void loadfragment(Fragment f1, String name, FragmentManager fm) {
         for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
         }
@@ -173,7 +164,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.replace(R.id.fragment_container, f1, name);
         ft.commit();
         setToolbarTitle(name);
-
     }
 
     public void setToolbarTitle(String Title) {
@@ -220,4 +210,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }, 1000);
         }
     }
-    }
+}

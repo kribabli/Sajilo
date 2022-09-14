@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class myServicesFragment extends Fragment {
-
-
     TabLayout tabLayout;
     ViewPager viewPager;
     FragmentManager childFragmentManager;
@@ -42,11 +40,8 @@ public class myServicesFragment extends Fragment {
             p.setMargins(20, 0, 20, 0);
             tab.requestLayout();
         }
-
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
-
-
         return rootView;
     }
 
@@ -55,9 +50,7 @@ public class myServicesFragment extends Fragment {
         adapter.addFragment(new Category(), "Category");
         adapter.addFragment(new AllCategory(), "All Category");
         viewPager.setAdapter(adapter);
-
     }
-
 
     class ViewPagerAdapter extends FragmentStatePagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();

@@ -14,7 +14,6 @@ public class HelperData extends Application {
         this.context = context;
     }
 
-
     public void saveIsLogin(boolean flag) {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -66,7 +65,6 @@ public class HelperData extends Application {
         editor.apply();
     }
 
-
     public String getUserId() {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
         return sharedPreferences.getString("user_id", "");
@@ -81,7 +79,4 @@ public class HelperData extends Application {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
         return sharedPreferences.getString("email", "");
     }
-
-
-
 }

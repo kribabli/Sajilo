@@ -87,14 +87,8 @@ public class NetworkConnection {
         }
     }
 
-
     private NetworkConnection() {
         throw new UnsupportedOperationException(
                 "Should not create instance of Util class. Please use as static..");
     }
-
-
-
-
-
 }

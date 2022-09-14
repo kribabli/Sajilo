@@ -2,7 +2,6 @@ package com.sample.sajilo.LoginModule;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -47,7 +46,6 @@ public class LoginActvity extends AppCompatActivity {
     ProgressBar progressBar;
     CheckBox checkBox;
     HelperData helperData;
-
     String url = "http://adminapp.tech/Sajilo/capi/userlogin.php";
 
     @Override
@@ -59,7 +57,7 @@ public class LoginActvity extends AppCompatActivity {
         setContentView(R.layout.activity_login_actvity);
         initMethod();
         setAction();
-        helperData=new HelperData(getApplicationContext());
+        helperData = new HelperData(getApplicationContext());
     }
 
     private void initMethod() {
@@ -110,27 +108,25 @@ public class LoginActvity extends AppCompatActivity {
                 password1.setError("Please enter password");
                 password1.requestFocus();
                 istrue = false;
-            }
-            else{
+            } else {
                 checkBox.setChecked(true);
-                if(checkBox.isChecked()){
+                if (checkBox.isChecked()) {
                     helperData.saveIsRemember(true);
-                    helperData.saveRemember(email_id,password);
+                    helperData.saveRemember(email_id, password);
                 }
-                validationfromserver(email_id,password);
+                validationfromserver(email_id, password);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return istrue;
-
     }
 
     private void validationfromserver(String email_id, String password) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(LoginActvity.this);
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("password",password);
-        jsonObject.put("email",email_id);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("password", password);
+        jsonObject.put("email", email_id);
         progressBar.setVisibility(View.VISIBLE);
         login.setVisibility(View.GONE);
 
@@ -141,19 +137,19 @@ public class LoginActvity extends AppCompatActivity {
                         try {
                             progressBar.setVisibility(View.GONE);
                             login.setVisibility(View.VISIBLE);
-                            if(response.getString("Result").equalsIgnoreCase("false")){
+                            if (response.getString("Result").equalsIgnoreCase("false")) {
                                 progressBar.setVisibility(View.GONE);
                                 login.setVisibility(View.VISIBLE);
-                                Toast.makeText(LoginActvity.this, ""+response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActvity.this, "" + response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
                             }
-                            if(response.getString("Result").equalsIgnoreCase("true")){
-                                JSONObject jsonObject1=new JSONObject(String.valueOf(response.getJSONObject("UserLogin")));
+                            if (response.getString("Result").equalsIgnoreCase("true")) {
+                                JSONObject jsonObject1 = new JSONObject(String.valueOf(response.getJSONObject("UserLogin")));
                                 progressBar.setVisibility(View.GONE);
                                 login.setVisibility(View.VISIBLE);
                                 helperData.saveIsLogin(true);
-                                helperData.saveLogin(jsonObject1.getString("id"),jsonObject1.getString("username"),jsonObject1.getString("email"));
-                                Toast.makeText(LoginActvity.this, ""+response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
-                                Intent intent=new Intent(LoginActvity.this,MainActivity.class);
+                                helperData.saveLogin(jsonObject1.getString("id"), jsonObject1.getString("username"), jsonObject1.getString("email"));
+                                Toast.makeText(LoginActvity.this, "" + response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LoginActvity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
                             }
@@ -174,7 +170,6 @@ public class LoginActvity extends AppCompatActivity {
             }
         });
         queue.add(jsonObjectRequest);
-
     }
 
     private void signIn() {

@@ -2,7 +2,6 @@ package com.sample.sajilo.LoginModule;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,9 +24,6 @@ import com.sample.sajilo.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
     TextView login;
@@ -56,7 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
         signUp = findViewById(R.id.signUp);
         facebookLogo = findViewById(R.id.facebookLogo);
         googleLogo = findViewById(R.id.googleLogo);
-        progressBar=findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
     }
 
     private void setAction() {
@@ -104,7 +100,7 @@ public class SignUpActivity extends AppCompatActivity {
                 mobile_no.requestFocus();
                 istrue = false;
             } else {
-                SendUserData( user,email_id,password,mobileNo);
+                SendUserData(user, email_id, password, mobileNo);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,11 +110,11 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void SendUserData(String user, String email_id, String password, String mobileNo) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(SignUpActivity.this);
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("username",user);
-        jsonObject.put("password",password);
-        jsonObject.put("email",email_id);
-        jsonObject.put("mobile",mobileNo);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("username", user);
+        jsonObject.put("password", password);
+        jsonObject.put("email", email_id);
+        jsonObject.put("mobile", mobileNo);
         progressBar.setVisibility(View.VISIBLE);
         signUp.setVisibility(View.GONE);
 
@@ -127,25 +123,21 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-
-                            JSONObject jsonObject1=new JSONObject(String.valueOf(response.getJSONObject("UserLogin")));
-                          if(response.getString("Result").equalsIgnoreCase("false")){
-                              progressBar.setVisibility(View.GONE);
-                              signUp.setVisibility(View.VISIBLE);
-                              showDialog(response.getString("ResponseMsg"),false);
-                              showToast(response.getString("ResponseMsg"));
-
-                          }
-                          if(response.getString("Result").equalsIgnoreCase("true")){
-                              progressBar.setVisibility(View.GONE);
-                              signUp.setVisibility(View.VISIBLE);
-                              showToast(response.getString("ResponseMsg"));
-                              Intent intent=new Intent(SignUpActivity.this,LoginActvity.class);
-                              startActivity(intent);
-                              finish();
-
-
-                          }
+                            JSONObject jsonObject1 = new JSONObject(String.valueOf(response.getJSONObject("UserLogin")));
+                            if (response.getString("Result").equalsIgnoreCase("false")) {
+                                progressBar.setVisibility(View.GONE);
+                                signUp.setVisibility(View.VISIBLE);
+                                showDialog(response.getString("ResponseMsg"), false);
+                                showToast(response.getString("ResponseMsg"));
+                            }
+                            if (response.getString("Result").equalsIgnoreCase("true")) {
+                                progressBar.setVisibility(View.GONE);
+                                signUp.setVisibility(View.VISIBLE);
+                                showToast(response.getString("ResponseMsg"));
+                                Intent intent = new Intent(SignUpActivity.this, LoginActvity.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -179,5 +171,4 @@ public class SignUpActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
 }
