@@ -38,7 +38,7 @@ public class LoginActvity extends AppCompatActivity {
     EditText email;
     EditText password1;
     ImageView facebookLogo, googleLogo;
-    TextView signUp;
+    TextView signUp, forgotPassword;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     Button login;
@@ -68,6 +68,7 @@ public class LoginActvity extends AppCompatActivity {
         facebookLogo = findViewById(R.id.facebookLogo);
         googleLogo = findViewById(R.id.googleLogo);
         signUp = findViewById(R.id.signUp);
+        forgotPassword = findViewById(R.id.forgotPassword);
         login = findViewById(R.id.login);
         progressBar = findViewById(R.id.progressBar);
         checkBox = findViewById(R.id.checkbox_login_activity);
@@ -90,8 +91,14 @@ public class LoginActvity extends AppCompatActivity {
 
         login.setOnClickListener(view -> {
             validation();
+        });
 
-
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActvity.this, ChangePasswordActivity.class);
+                startActivity(intent);
+            }
         });
     }
 
@@ -157,8 +164,6 @@ public class LoginActvity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
                     }
                 }, new Response.ErrorListener() {
             @Override
