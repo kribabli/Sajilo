@@ -79,4 +79,11 @@ public class HelperData extends Application {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
         return sharedPreferences.getString("email", "");
     }
+
+    public void Logout(){
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+    }
 }

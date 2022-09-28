@@ -4,8 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/BabliOffice/Sajilo/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/drawable/border1_gray.xml" value="0.1175" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/drawable/border2_gray.xml" value="0.1175" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/drawable/border_radius.xml" value="0.1175" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/drawable/bottom_radius_bg.xml" value="0.1175" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/drawable/image_genre_bg.xml" value="0.126" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/drawable/round_rectangle.xml" value="0.1185" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/drawable/sajilosplash.xml" value="0.1175" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/layout/activity_login_actvity.xml" value="0.19895833333333332" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/layout/activity_main.xml" value="0.175" />
+        <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/layout/activity_shop_now.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/layout/activity_sign_up.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/layout/fragment_category.xml" value="0.19895833333333332" />
         <entry key="..\:/Users/Ravi/Desktop/Amit Office Projects/New SajiloApp/Sajilo/app/src/main/res/layout/fragment_my_services.xml" value="0.19895833333333332" />

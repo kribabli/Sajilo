@@ -1,7 +1,9 @@
 package com.sample.sajilo.LoginModule;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,6 +29,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.sample.sajilo.Common.ConstantClass;
 import com.sample.sajilo.Common.HelperData;
 import com.sample.sajilo.MainActivity;
 import com.sample.sajilo.R;
@@ -37,16 +40,17 @@ import org.json.JSONObject;
 public class LoginActvity extends AppCompatActivity {
     EditText email;
     EditText password1;
-    ImageView facebookLogo, googleLogo;
+    ImageView  googleLogo;
     TextView signUp, forgotPassword;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
     Button login;
-    String email_id, password;
+    String email_id, password,UserEmail,UserName;
     ProgressBar progressBar;
     CheckBox checkBox;
     HelperData helperData;
-    String url = "http://adminapp.tech/Sajilo/capi/userlogin.php";
+    String url = ConstantClass.Base_Url+"userlogin.php";
+    String google_login_url = ConstantClass.Base_Url+"googlelogin.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,7 @@ public class LoginActvity extends AppCompatActivity {
         gsc = GoogleSignIn.getClient(this, gso);
         email = findViewById(R.id.email);
         password1 = findViewById(R.id.password1);
-        facebookLogo = findViewById(R.id.facebookLogo);
+
         googleLogo = findViewById(R.id.googleLogo);
         signUp = findViewById(R.id.signUp);
         forgotPassword = findViewById(R.id.forgotPassword);
@@ -81,13 +85,6 @@ public class LoginActvity extends AppCompatActivity {
         });
 
         googleLogo.setOnClickListener(view -> signIn());
-
-        facebookLogo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                facebookLogin();
-            }
-        });
 
         login.setOnClickListener(view -> {
             validation();
@@ -192,18 +189,79 @@ public class LoginActvity extends AppCompatActivity {
                 loginMethod();
             } catch (ApiException e) {
                 Toast.makeText(this, "Something went wrong !", Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    private void loginMethod() {
-        Intent intent = new Intent(LoginActvity.this, MainActivity.class);
-        intent.putExtra("checkData", true);
-        startActivity(intent);
-        finish();
+    private void loginMethod() throws JSONException {
+        login.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this, gso);
+        GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this);
+        if (googleSignInAccount != null) {
+            UserName = googleSignInAccount.getDisplayName();
+            UserEmail = googleSignInAccount.getEmail();
+            Uri photoUrl = googleSignInAccount.getPhotoUrl();
+            String id = googleSignInAccount.getId();
+        }
+        RequestQueue queue = Volley.newRequestQueue(LoginActvity.this);
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("email",UserEmail);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, google_login_url, jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            Log.d("Amit","Value "+response.toString());
+                            if(response.getString("Result").equalsIgnoreCase("false")){
+                                progressBar.setVisibility(View.GONE);
+                                login.setVisibility(View.VISIBLE);
+                                Toast.makeText(LoginActvity.this, ""+response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
+                                gsc.signOut();
+                                Intent intent=new Intent(LoginActvity.this,SignUpActivity.class);
+                                intent.putExtra("email",UserEmail);
+                                startActivity(intent);
+                                finish();
+                            }
+                            else if(response.getString("Result").equalsIgnoreCase("true")){
+                                login.setVisibility(View.VISIBLE);
+                                JSONObject jsonObject1=new JSONObject(String.valueOf(response.getJSONObject("userlogin")));
+                                progressBar.setVisibility(View.GONE);
+                                Toast.makeText(LoginActvity.this, ""+response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
+                                helperData.saveIsLogin(true);
+                                helperData.saveLogin(jsonObject1.getString("id"),jsonObject1.getString("username"),jsonObject1.getString("email"));
+                                Toast.makeText(LoginActvity.this, ""+response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
+                                Intent intent=new Intent(LoginActvity.this,MainActivity.class);
+
+                                startActivity(intent);
+                                finish();
+                            }
+                            else{
+                                progressBar.setVisibility(View.GONE);
+                                login.setVisibility(View.VISIBLE);
+                                Toast.makeText(LoginActvity.this, ""+response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+                login.setVisibility(View.VISIBLE);
+                Toast.makeText(LoginActvity.this, "Somethings went wrong...", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        queue.add(jsonObjectRequest);
     }
 
-    private void facebookLogin() {
 
-    }
 }
