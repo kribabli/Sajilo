@@ -44,6 +44,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 JSONArray jsonArray = new JSONArray();
                 try {
                     Log.d("TAG", "onResponse: " + jsonArray1);
+                    
                     JSONObject jsonObject = new JSONObject(response);
 
                 } catch (JSONException e) {
