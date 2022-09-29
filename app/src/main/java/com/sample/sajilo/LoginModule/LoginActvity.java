@@ -233,7 +233,6 @@ public class LoginActvity extends AppCompatActivity {
                                 Toast.makeText(LoginActvity.this, ""+response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
                                 helperData.saveIsLogin(true);
                                 helperData.saveLogin(jsonObject1.getString("id"),jsonObject1.getString("username"),jsonObject1.getString("email"));
-                                Toast.makeText(LoginActvity.this, ""+response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
                                 Intent intent=new Intent(LoginActvity.this,MainActivity.class);
 
                                 startActivity(intent);
@@ -244,12 +243,9 @@ public class LoginActvity extends AppCompatActivity {
                                 login.setVisibility(View.VISIBLE);
                                 Toast.makeText(LoginActvity.this, ""+response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
                     }
                 }, new Response.ErrorListener() {
             @Override

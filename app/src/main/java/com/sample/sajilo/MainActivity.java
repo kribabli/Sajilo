@@ -30,6 +30,7 @@ import com.sample.sajilo.BottomFragments.MyBookingFragment;
 import com.sample.sajilo.BottomFragments.MyRideFragment;
 import com.sample.sajilo.BottomFragments.ShopNowFragment;
 import com.sample.sajilo.BottomFragments.VideoFragment;
+import com.sample.sajilo.Common.HelperData;
 import com.sample.sajilo.LoginModule.LoginActvity;
 import com.sample.sajilo.ServicesRelatedFragment.myServicesFragment;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar_main;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
+    HelperData helperData;
     private FragmentManager fragmentManager;
 
     @Override
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         new Thread(this::mBottomNavigationBar).start();
         fragmentManager = getSupportFragmentManager();
+        helperData=new HelperData(getApplicationContext());
         toolbar_main = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar_main);
         initMethod();
@@ -58,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
             }
-
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -101,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
+        gsc.signOut();
+        helperData.Logout();
         Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show();
     }
 
