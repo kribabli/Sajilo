@@ -14,11 +14,7 @@
             android:icon="@drawable/ic_userprofile"
             android:title="@string/menu_user_profile" />
 
-        <item
-            android:id="@+id/menu_go_services"
-            android:checked="false"
-            android:icon="@drawable/ic_services"
-            android:title="@string/menu_servies" />
+
 
         <item
             android:id="@+id/menu_go_logout"

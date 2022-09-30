@@ -83,10 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Intent intent = new Intent(MainActivity.this, MyProfile.class);
                     startActivity(intent);
                     return true;
-                case R.id.menu_go_services:
-                    myServicesFragment my = new myServicesFragment();
-                    loadfragment(my, "My Services", fragmentManager);
-                    return true;
+
                 case R.id.menu_go_logout:
                     userlogout();
                     return true;

@@ -48,7 +48,6 @@ public class myServicesFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         final ViewPagerAdapter adapter = new ViewPagerAdapter(childFragmentManager);
         adapter.addFragment(new Category(), "Category");
-        adapter.addFragment(new AllCategory(), "All Category");
         viewPager.setAdapter(adapter);
     }
 

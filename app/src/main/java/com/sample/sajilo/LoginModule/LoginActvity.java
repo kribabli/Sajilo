@@ -93,10 +93,37 @@ public class LoginActvity extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActvity.this, ChangePasswordActivity.class);
-                startActivity(intent);
+                validationOnlyEmail();
+
             }
+
+
         });
+    }
+
+    private boolean validationOnlyEmail() {
+        boolean istrue = true;
+        try{
+            if(email.getText().toString().trim().length()==0){
+                email.setError("Please enter email id");
+                email.requestFocus();
+                istrue = false;
+            }
+            else{
+                String email_id=email.getText().toString();
+                chnagePasswordRequest(email_id);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return istrue;
+
+    }
+
+    private void chnagePasswordRequest(String email_id) {
+        Intent intent=new Intent(LoginActvity.this,ChangePasswordActivity.class);
+        intent.putExtra("email",email_id);
+        startActivity(intent);
     }
 
     private boolean validation() {
@@ -151,7 +178,8 @@ public class LoginActvity extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 login.setVisibility(View.VISIBLE);
                                 helperData.saveIsLogin(true);
-                                helperData.saveLogin(jsonObject1.getString("id"), jsonObject1.getString("username"), jsonObject1.getString("email"));
+                                Log.d("Amit","VAlue "+jsonObject1);
+                                helperData.saveLogin(jsonObject1.getString("id"), jsonObject1.getString("username"), jsonObject1.getString("email"),jsonObject1.getString("mobile"));
                                 Toast.makeText(LoginActvity.this, "" + response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActvity.this, MainActivity.class);
                                 startActivity(intent);
@@ -232,9 +260,8 @@ public class LoginActvity extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 Toast.makeText(LoginActvity.this, ""+response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
                                 helperData.saveIsLogin(true);
-                                helperData.saveLogin(jsonObject1.getString("id"),jsonObject1.getString("username"),jsonObject1.getString("email"));
+                                helperData.saveLogin(jsonObject1.getString("id"),jsonObject1.getString("username"),jsonObject1.getString("email"),jsonObject1.getString("mobile"));
                                 Intent intent=new Intent(LoginActvity.this,MainActivity.class);
-
                                 startActivity(intent);
                                 finish();
                             }

@@ -3,9 +3,11 @@ package com.sample.sajilo.Common;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 
 public class HelperData extends Application {
     private static String SHARED_PREF_NAME1 = "Sajilo";
+    private static String SHARED_PREF_NAME2 = "profileImage";
     private SharedPreferences sharedPreferences;
     Context context;
     private SharedPreferences.Editor editor;
@@ -56,12 +58,13 @@ public class HelperData extends Application {
         return sharedPreferences.getString("remember_password", "");
     }
 
-    public void saveLogin(String user_id, String user_name, String email) {
+    public void saveLogin(String user_id, String user_name, String email,String mobile) {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.putString("user_id", user_id);
         editor.putString("user_name", user_name);
         editor.putString("email", email);
+        editor.putString("mobile", mobile);
         editor.apply();
     }
 
@@ -80,10 +83,27 @@ public class HelperData extends Application {
         return sharedPreferences.getString("email", "");
     }
 
+    public String getMobile() {
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("mobile", "");
+    }
+
     public void Logout(){
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
+    }
+
+    public void saveProfileImage(Uri Image){
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME2, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString("UserprofileImage", String.valueOf(Image));
+        editor.apply();
+    }
+
+    public Uri getUserProfileImage(){
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME2, Context.MODE_PRIVATE);
+        return Uri.parse(sharedPreferences.getString("UserprofileImage", ""));
     }
 }
