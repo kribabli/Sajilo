@@ -1,6 +1,8 @@
 package com.sample.sajilo.ServicesRelatedFragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.sample.sajilo.AllSubCategory;
 import com.sample.sajilo.Model.CategoryDataResponse;
 import com.sample.sajilo.R;
 
@@ -34,11 +37,22 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.text.setText("" + list.get(position).getCat_name());
         Glide.with(context)
                 .load("http://adminapp.tech/Sajilo/" + list.get(position).getCat_img())
                 .into(holder.image);
+
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, AllSubCategory.class);
+                intent.putExtra("catId",list.get(position).getId());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

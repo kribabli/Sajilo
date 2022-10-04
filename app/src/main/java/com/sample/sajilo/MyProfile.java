@@ -67,13 +67,7 @@ public class MyProfile extends AppCompatActivity {
     }
 
     private void setAction() {
-        activityMyProfileBinding.profileChange.setOnClickListener(view -> {
-            code = "profileImage";
-            ImagePicker.with(MyProfile.this)
-                    .crop(16f, 9f)
-                    .start();
 
-        });
 
         activityMyProfileBinding.linearlayout1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,17 +161,5 @@ public class MyProfile extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode== Activity.RESULT_OK){
-           if(code.equalsIgnoreCase("profileImage")) {
-               profileImagePath = FileUriUtils.INSTANCE.getRealPath(this, data.getData());
-               Uri selectedImage = data.getData();
-               activityMyProfileBinding.profilePic.setImageURI(selectedImage);
-               helperData.saveProfileImage(selectedImage);
-           }
 
-        }
-    }
 }
