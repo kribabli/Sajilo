@@ -1,11 +1,15 @@
 package com.sample.sajilo;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +27,7 @@ public class Splash_Screen extends AppCompatActivity {
     HelperData helperData;
     GoogleSignInClient gsc;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +38,7 @@ public class Splash_Screen extends AppCompatActivity {
         helperData=new HelperData(getApplicationContext());
         logoImageView = (ImageView) findViewById(R.id.logoImageView);
 //        Animation slideAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.side_slide);
-//        logoImageView.startAnimation(slideAnimation);
+//        tv1.startAnimation(slideAnimation);
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         gsc = GoogleSignIn.getClient(this, gso);
         GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this);

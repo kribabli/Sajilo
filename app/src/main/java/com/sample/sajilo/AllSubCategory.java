@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.sample.sajilo.Adapter.SubCategoryAdapter;
 import com.sample.sajilo.BottomFragments.Response.SubCategoryResponse;
 import com.sample.sajilo.Common.ConstantClass;
+import com.sample.sajilo.Common.DatabaseHelper;
 import com.sample.sajilo.Common.NetworkConnection;
 import com.sample.sajilo.LoginModule.LoginActvity;
 import com.sample.sajilo.Model.CategoryDataResponse;
@@ -38,9 +39,11 @@ public class AllSubCategory extends AppCompatActivity {
     ProgressBar progressBar;
     LinearLayout lyt_not_found;
     ArrayList<SubCategoryResponse> mListItem;
+    DatabaseHelper databaseHelper;
     SubCategoryAdapter adapter;
     String SubCategoryUrl= ConstantClass.Base_Url+"subcategory.php";
     String Id="";
+    public static String favourite_id;
 
 
     @Override
@@ -49,10 +52,11 @@ public class AllSubCategory extends AppCompatActivity {
         setContentView(R.layout.activity_all_sub_category);
         setInit();
         mListItem = new ArrayList<>();
+        databaseHelper=new DatabaseHelper(this);
         if(getIntent().hasExtra("catId")){
             Id=getIntent().getStringExtra("catId");
         }
-
+        Log.d("Amit","Value111 "+databaseHelper.getFavouriteId());
     }
 
     private void setInit() {
@@ -63,6 +67,7 @@ public class AllSubCategory extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         if (NetworkConnection.isConnected(this)) {
             getAllSubCategory();
+
         } else {
             Toast.makeText(this, "No Network Connection!!!..", Toast.LENGTH_SHORT).show();
         }
@@ -79,6 +84,7 @@ public class AllSubCategory extends AppCompatActivity {
                     JSONArray jsonArray=jsonObject.getJSONArray("data");
                     if(jsonArray.length()>0){
                         progressBar.setVisibility(View.GONE);
+                        mListItem.clear();
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject1=jsonArray.getJSONObject(i);
                             String  id=jsonObject1.getString("id");

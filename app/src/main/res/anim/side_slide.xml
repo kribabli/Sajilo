@@ -1,15 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<set
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillAfter="true"
+    android:interpolator="@android:anim/linear_interpolator"
+    tools:ignore="NamespaceTypo">
 
-    <!--THIS CODE IS FOR SIDE ANIMATION-->
-    <translate
-        android:duration="1500"
-        android:fromXDelta="-50%"
-        android:fromYDelta="0%" />
 
-    <alpha
-        android:duration="1500"
-        android:fromAlpha="0.1"
-        android:toAlpha="1.0" />
+    <!-- Move -->
+    <scale
+        xmlns:android="https://schemas.android.com/apk/res/android"
+        android:duration="4000"
+        android:fromXScale="1"
+        android:fromYScale="1"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toXScale="4"
+        android:toYScale="4" >
+    </scale>
+
+    <!-- Rotate 180 degrees -->
+    <rotate
+        android:duration="500"
+        android:fromDegrees="0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:repeatCount="infinite"
+        android:repeatMode="restart"
+        android:toDegrees="360" />
+
 </set>

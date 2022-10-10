@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Sajilo"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+
+
         <activity
             android:name=".AllSubCategory"
             android:exported="false">
@@ -24,9 +27,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
+
         <activity
             android:name=".LoginModule.ChangePasswordActivity"
             android:exported="false">
@@ -34,6 +39,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".Splash_Screen"
             android:exported="true"
@@ -44,19 +50,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".LoginModule.LoginActvity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".MyProfile"
             android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+
         <activity
             android:name=".ShopNow"
             android:exported="true" />
+
         <activity
             android:name=".LoginModule.SignUpActivity"
             android:exported="true"

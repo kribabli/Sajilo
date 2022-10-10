@@ -71,8 +71,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         signUp.setOnClickListener(view -> {
-//            check_signUp();
-            validation();
+            check_signUp();
         });
     }
 
@@ -127,40 +126,31 @@ public class SignUpActivity extends AppCompatActivity {
         signUp.setVisibility(View.GONE);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONObject jsonObject1=new JSONObject(String.valueOf(response.getJSONObject("UserLogin")));
-                            if(response.getString("Result").equalsIgnoreCase("false")){
-                                progressBar.setVisibility(View.GONE);
-                                signUp.setVisibility(View.VISIBLE);
-                                showDialog(response.getString("ResponseMsg"),false);
-                                showToast(response.getString("ResponseMsg"));
-
-                            }
-                            if(response.getString("Result").equalsIgnoreCase("true")){
-                                progressBar.setVisibility(View.GONE);
-                                signUp.setVisibility(View.VISIBLE);
-                                showToast(response.getString("ResponseMsg"));
-                                Intent intent=new Intent(SignUpActivity.this,LoginActvity.class);
-                                startActivity(intent);
-                                finish();
-
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                response -> {
+                    try {
+                        JSONObject jsonObject1=new JSONObject(String.valueOf(response.getJSONObject("UserLogin")));
+                        Log.d("Amit","Value "+jsonObject1);
+                        if(response.getString("Result").equalsIgnoreCase("false")){
+                            progressBar.setVisibility(View.GONE);
+                            signUp.setVisibility(View.VISIBLE);
+                            showDialog(response.getString("ResponseMsg"),false);
+                            showToast(response.getString("ResponseMsg"));
                         }
+                        if(response.getString("Result").equalsIgnoreCase("true")){
+                            progressBar.setVisibility(View.GONE);
+                            signUp.setVisibility(View.VISIBLE);
+                            showToast(response.getString("ResponseMsg"));
+                            Intent intent=new Intent(SignUpActivity.this,LoginActvity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressBar.setVisibility(View.GONE);
-                signUp.setVisibility(View.VISIBLE);
-                showToast("Please Register....");
-
-            }
+                }, error -> {
+                    progressBar.setVisibility(View.GONE);
+                    signUp.setVisibility(View.VISIBLE);
+                    showToast("Please Register....");
         });
         queue.add(jsonObjectRequest);
     }

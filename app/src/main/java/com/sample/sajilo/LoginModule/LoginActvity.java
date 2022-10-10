@@ -90,15 +90,7 @@ public class LoginActvity extends AppCompatActivity {
             validation();
         });
 
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                validationOnlyEmail();
-
-            }
-
-
-        });
+        forgotPassword.setOnClickListener(view -> validationOnlyEmail());
     }
 
     private boolean validationOnlyEmail() {
@@ -162,42 +154,35 @@ public class LoginActvity extends AppCompatActivity {
         login.setVisibility(View.GONE);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
+                response -> {
+                    try {
+                        progressBar.setVisibility(View.GONE);
+                        login.setVisibility(View.VISIBLE);
+                        if (response.getString("Result").equalsIgnoreCase("false")) {
                             progressBar.setVisibility(View.GONE);
                             login.setVisibility(View.VISIBLE);
-                            if (response.getString("Result").equalsIgnoreCase("false")) {
-                                progressBar.setVisibility(View.GONE);
-                                login.setVisibility(View.VISIBLE);
-                                Toast.makeText(LoginActvity.this, "" + response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
-                            }
-                            if (response.getString("Result").equalsIgnoreCase("true")) {
-                                JSONObject jsonObject1 = new JSONObject(String.valueOf(response.getJSONObject("UserLogin")));
-                                progressBar.setVisibility(View.GONE);
-                                login.setVisibility(View.VISIBLE);
-                                helperData.saveIsLogin(true);
-                                Log.d("Amit","VAlue "+jsonObject1);
-                                helperData.saveLogin(jsonObject1.getString("id"), jsonObject1.getString("username"), jsonObject1.getString("email"),jsonObject1.getString("mobile"));
-                                Toast.makeText(LoginActvity.this, "" + response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActvity.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            Toast.makeText(LoginActvity.this, "" + response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
                         }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressBar.setVisibility(View.GONE);
-                login.setVisibility(View.VISIBLE);
-                Toast.makeText(LoginActvity.this, "Somethings went wrong..", Toast.LENGTH_SHORT).show();
+                        if (response.getString("Result").equalsIgnoreCase("true")) {
+                            JSONObject jsonObject1 = new JSONObject(String.valueOf(response.getJSONObject("UserLogin")));
+                            progressBar.setVisibility(View.GONE);
+                            login.setVisibility(View.VISIBLE);
+                            helperData.saveIsLogin(true);
+                            Log.d("Amit","Value  "+jsonObject1);
+                            helperData.saveLogin(jsonObject1.getString("id"), jsonObject1.getString("username"), jsonObject1.getString("email"),jsonObject1.getString("mobile"));
+                            Toast.makeText(LoginActvity.this, "" + response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActvity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
 
-            }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }, error -> {
+                    progressBar.setVisibility(View.GONE);
+                    login.setVisibility(View.VISIBLE);
+                    Toast.makeText(LoginActvity.this, "Somethings went wrong..", Toast.LENGTH_SHORT).show();
         });
         queue.add(jsonObjectRequest);
     }

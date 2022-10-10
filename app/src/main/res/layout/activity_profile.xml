@@ -1,34 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
+    tools:context=".ProfileActivity"
     android:layout_height="match_parent">
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:background="@color/primary"
-        android:layout_height="55dp">
+ <androidx.appcompat.widget.Toolbar
+     android:layout_width="match_parent"
+     android:id="@+id/toolbar_main"
+     android:layout_height="wrap_content"
+     android:background="@color/primary">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="10">
 
-            <TextView
-                android:id="@+id/background_image_view"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/white_back_arrow"
-                android:gravity="left"
-                android:textColor="@color/black" />
+     <TextView
+         android:layout_width="30dp"
+         android:layout_height="30dp"
+         android:layout_marginStart="10dp"
+         android:drawableLeft="@drawable/white_back_arrow"
+         android:id="@+id/backPress"/>
 
-        </LinearLayout>
 
-    </androidx.appcompat.widget.Toolbar>
+
+ </androidx.appcompat.widget.Toolbar>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
