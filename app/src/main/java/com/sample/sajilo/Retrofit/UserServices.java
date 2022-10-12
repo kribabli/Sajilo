@@ -13,7 +13,7 @@ import retrofit2.http.Part;
 
 public interface UserServices {
 
-    @POST("capi/categorylist.php")
+    @POST("capi/serviceslist.php")
     Call<CategoryReponse> getCategeoryDetails(
             );
 

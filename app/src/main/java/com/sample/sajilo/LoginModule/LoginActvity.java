@@ -37,6 +37,8 @@ import com.sample.sajilo.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Random;
+
 public class LoginActvity extends AppCompatActivity {
     EditText email;
     EditText password1;
@@ -169,7 +171,14 @@ public class LoginActvity extends AppCompatActivity {
                             login.setVisibility(View.VISIBLE);
                             helperData.saveIsLogin(true);
                             Log.d("Amit","Value  "+jsonObject1);
-                            helperData.saveLogin(jsonObject1.getString("id"), jsonObject1.getString("username"), jsonObject1.getString("email"),jsonObject1.getString("mobile"));
+                            String refer_code;
+                            if(jsonObject1.isNull("refferal_code")){
+                                refer_code="Sajilo123";
+                            }
+                            else{
+                                refer_code=jsonObject1.getString("refferal_code");
+                            }
+                            helperData.saveLogin(jsonObject1.getString("id"), jsonObject1.getString("username"), jsonObject1.getString("email"),jsonObject1.getString("mobile"),refer_code);
                             Toast.makeText(LoginActvity.this, "" + response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActvity.this, MainActivity.class);
                             startActivity(intent);
@@ -244,7 +253,15 @@ public class LoginActvity extends AppCompatActivity {
                             progressBar.setVisibility(View.GONE);
                             Toast.makeText(LoginActvity.this, ""+response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
                             helperData.saveIsLogin(true);
-                            helperData.saveLogin(jsonObject1.getString("id"),jsonObject1.getString("username"),jsonObject1.getString("email"),jsonObject1.getString("mobile"));
+                            String refer_code;
+                            if(jsonObject1.isNull("refferal_code")){
+                                refer_code="Sajilo123";
+                            }
+                            else{
+                                refer_code=jsonObject1.getString("refferal_code");
+
+                            }
+                            helperData.saveLogin(jsonObject1.getString("id"),jsonObject1.getString("username"),jsonObject1.getString("email"),jsonObject1.getString("mobile"),refer_code);
                             Intent intent=new Intent(LoginActvity.this,MainActivity.class);
                             startActivity(intent);
                             finish();

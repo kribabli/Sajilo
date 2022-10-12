@@ -38,9 +38,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.text.setText("" + list.get(position).getCat_name());
+        holder.text.setText("" + list.get(position).getName());
         Glide.with(context)
-                .load("http://adminapp.tech/Sajilo/" + list.get(position).getCat_img())
+                .load("http://adminapp.tech/Sajilo/" + list.get(position).getImage())
                 .into(holder.image);
 
 

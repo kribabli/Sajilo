@@ -6,10 +6,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,6 +27,7 @@ import com.sample.sajilo.Model.CategoryDataResponse;
 import com.sample.sajilo.Model.CategoryReponse;
 import com.sample.sajilo.Model.Datum;
 import com.sample.sajilo.Model.SliderAdapter;
+import com.sample.sajilo.R;
 import com.sample.sajilo.Retrofit.ApiClient;
 import com.sample.sajilo.ServicesRelatedFragment.CategoryAdapter;
 import com.sample.sajilo.databinding.FragmentHomeBinding;
@@ -59,11 +64,20 @@ public class HomeFragment extends Fragment {
         mListItem = new ArrayList<>();
         sliderList=new ArrayList<>();
         view.recyclerView.setHasFixedSize(true);
+        Animation animSlideDown = AnimationUtils.loadAnimation(getContext(),R.anim.slide_down);
+        view.recyclerView.startAnimation(animSlideDown);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
         view.recyclerView.setLayoutManager(layoutManager);
         if (NetworkConnection.isConnected(getActivity())) {
             getCategory();
             getSliderData();
+            view.swipeRefreshLayout.setOnRefreshListener(() -> {
+                view.swipeRefreshLayout.setRefreshing(false);
+                view.recyclerView.startAnimation(animSlideDown);
+                getCategory();
+                mListItem.clear();
+                adapter.notifyDataSetChanged();
+            });
         } else {
             Toast.makeText(getActivity(), "No Network Connection!!!..", Toast.LENGTH_SHORT).show();
         }
@@ -110,7 +124,6 @@ public class HomeFragment extends Fragment {
                             String status=jsonObject.getString("status");
                             String is_main=jsonObject.getString("is_main");
                             Datum datum=new Datum(id,img,status,is_main);
-//                            sliderList.add(new CarouselItem("http://adminapp.tech/Sajilo/"+img));
                             sliderList.add(datum);
                            }
                         displaySliderImage();
@@ -118,19 +131,13 @@ public class HomeFragment extends Fragment {
 
                     }
 
-
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
             }
-        }, new com.android.volley.Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+        }, error -> {
 
-            }
         });
         queue.add(jsonObjectRequest);
 
@@ -154,11 +161,12 @@ public class HomeFragment extends Fragment {
                             jsonArray = new JSONArray(categoryData);
                             if (jsonArray.length() > 0) {
                                 view.progressBar.setVisibility(View.GONE);
+                                Log.d("Amit","Value "+jsonArray);
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    String cat_img = jsonObject.getString("cat_img");
-                                    String cat_name = jsonObject.getString("cat_name");
-                                    String cat_status = jsonObject.getString("cat_status");
+                                    String cat_img = jsonObject.getString("image");
+                                    String cat_name = jsonObject.getString("name");
+                                    String cat_status = jsonObject.getString("status");
                                     String id = jsonObject.getString("id");
                                     CategoryDataResponse categoryReponse1 = new CategoryDataResponse(id, cat_name, cat_status, cat_img);
                                     mListItem.add(categoryReponse1);

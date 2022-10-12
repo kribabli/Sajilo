@@ -17,6 +17,14 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_FAVOURITE = "FAVOURITE";
 
+    public static final String TABLE_VIDEO_LIKED="LIKED_VIDEO";
+
+
+    public static final String VIDEO_ID = "id";
+    public static final String VIDEO_NAME = "video_name";
+    public static final String VIDEO_URL = "video_url";
+    public static final String USER_ID = "User_id";
+
 
     public static final String FAVOURITE_ID = "id";
     public static final String FAVOURITE_NAME = "Favourite_Sub_cat_Name";
@@ -36,7 +44,16 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
                 + FAVOURITE_IMAGE + " TEXT"
                 + ")";
 
+
+        String CREATE_SERIES_TABLE = "CREATE TABLE " + TABLE_VIDEO_LIKED + "("
+                + VIDEO_ID + " INTEGER,"
+                + USER_ID + " INTEGER,"
+                + VIDEO_NAME + " TEXT,"
+                + VIDEO_URL + " TEXT"
+                + ")";
+
         db.execSQL(CREATE_FAVOURITE_TABLE);
+        db.execSQL(CREATE_SERIES_TABLE);
     }
 
     @Override

@@ -1,45 +1,79 @@
 package com.sample.sajilo.BottomFragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.sample.sajilo.Adapter.VideoAdapter;
+import com.sample.sajilo.Common.ConstantClass;
+import com.sample.sajilo.Common.NetworkConnection;
+import com.sample.sajilo.Model.Datum;
+import com.sample.sajilo.Model.VideoResponse;
 import com.sample.sajilo.R;
+import com.sample.sajilo.databinding.FragmentHomeBinding;
+import com.sample.sajilo.databinding.FragmentVideoBinding;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class VideoFragment extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;
+    private FragmentVideoBinding view;
+    String Video_url= ConstantClass.Base_Url+"vediolist.php";
+    ArrayList<VideoResponse> videoSlider;
 
-    public VideoFragment() {
-        // Required empty public constructor
-    }
-
-    public static VideoFragment newInstance(String param1, String param2) {
-        VideoFragment fragment = new VideoFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_video, container, false);
+        view = FragmentVideoBinding.inflate(inflater, container, false);
+        videoSlider=new ArrayList<>();
+        if(NetworkConnection.isConnected(getActivity())){
+            getAllVideoData();
+        }
+        else{
+            Toast.makeText(getActivity(), "No Network Connection!!!..", Toast.LENGTH_SHORT).show();
+        }
+        return view.getRoot();
+    }
+
+    private void getAllVideoData() {
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, Video_url, null, response -> {
+            try {
+                JSONArray jsonArray=response.getJSONArray("data");
+                if(response.getString("Result").equalsIgnoreCase("true")){
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject jsonObject=jsonArray.getJSONObject(i);
+                        String id=jsonObject.getString("id");
+                        String vedio=jsonObject.getString("vedio");
+                        String status=jsonObject.getString("status");
+                        String date=jsonObject.getString("date");
+                        VideoResponse videoResponse=new VideoResponse(id,vedio,status,date);
+                        videoSlider.add(videoResponse);
+                    }
+                    view.viewpager.setAdapter(new VideoAdapter(videoSlider));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> {
+
+        });
+        queue.add(jsonObjectRequest);
+
+
     }
 }

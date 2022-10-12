@@ -58,19 +58,25 @@ public class HelperData extends Application {
         return sharedPreferences.getString("remember_password", "");
     }
 
-    public void saveLogin(String user_id, String user_name, String email,String mobile) {
+    public void saveLogin(String user_id, String user_name, String email,String mobile,String refferal_code) {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.putString("user_id", user_id);
         editor.putString("user_name", user_name);
         editor.putString("email", email);
         editor.putString("mobile", mobile);
+        editor.putString("refferal_code",refferal_code);
         editor.apply();
     }
 
     public String getUserId() {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
         return sharedPreferences.getString("user_id", "");
+    }
+
+    public String getReferCode() {
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME1, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("refferal_code", "");
     }
 
     public String getUserName() {
