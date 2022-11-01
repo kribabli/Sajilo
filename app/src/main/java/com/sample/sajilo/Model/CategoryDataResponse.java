@@ -5,14 +5,17 @@ public class CategoryDataResponse {
     String name;
     String status;
     String image;
+    String pinCode;
 
 
-    public CategoryDataResponse(String id, String name, String status, String image) {
+    public CategoryDataResponse(String id, String name, String status, String image, String pinCode) {
         this.id = id;
         this.name = name;
         this.status = status;
         this.image = image;
+        this.pinCode = pinCode;
     }
+
 
     public String getId() {
         return id;
@@ -44,5 +47,13 @@ public class CategoryDataResponse {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(String pinCode) {
+        this.pinCode = pinCode;
     }
 }

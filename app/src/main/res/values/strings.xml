@@ -14,4 +14,5 @@
     <string name="tag_line">Welcome Sajilo</string>
     <string name="back_key">Please click back again to exit</string>
     <string name="example_string">Line 1\Line2\Line n</string>
+    <string name="search">Search</string>
 </resources>

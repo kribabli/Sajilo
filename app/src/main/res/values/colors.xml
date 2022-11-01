@@ -16,6 +16,9 @@
     <color name="genre_view_bg">#80000000</color>
     <color name="BlackTransparent">#8F000000</color>
     <color name="Blue_Dress">#157DEC</color>
+    <color name="product_behind">#007DFF</color>
+    <color name="product_name_behind_color">#03236B</color>
+
     <color name="red">#FF0000</color>
     <color name="lineColor">#B8B8B8</color>
 </resources>

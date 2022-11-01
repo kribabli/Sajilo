@@ -7,6 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".LoginModule.LoginActvity">
 
+
+
+
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="100dp"
@@ -14,29 +17,30 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="59dp"
-        android:layout_marginEnd="162dp"
+        android:layout_marginTop="60dp"
         android:src="@drawable/logo"
         tools:ignore="NotSibling" />
 
-    <LinearLayout
+
+
+
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/logoImageView"
-        android:layout_marginTop="80dp"
+            android:layout_below="@+id/logoImageView"
+        android:layout_marginTop="100dp"
         android:background="@drawable/round_rectangle"
         android:orientation="vertical"
-        android:weightSum="10"
         tools:ignore="NotSibling">
 
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="50dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="50dp"
             android:background="@drawable/border_radius"
             android:hint="Email Address"
             android:inputType="textEmailAddress"
@@ -48,9 +52,9 @@
             android:id="@+id/password1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="50dp"
             android:background="@drawable/border_radius"
             android:hint="Password"
             android:inputType="textPassword"
@@ -58,11 +62,13 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:weightSum="2">
 
             <LinearLayout
@@ -77,14 +83,15 @@
 
                 <CheckBox
                     android:id="@+id/checkbox_login_activity"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center" />
 
                 <TextView
                     android:id="@+id/text_reme_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:layout_gravity="center"
                     android:text="@string/remember_me"
                     android:textColor="@color/white"
@@ -120,10 +127,13 @@
 
         <Button
             android:id="@+id/login"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/border_radius"
             android:backgroundTint="@color/white"
             android:text="Login"
             android:textColor="#19ADEF" />
@@ -139,15 +149,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:weightSum="10">
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="10"
-                android:background="@color/white" />
+           <ImageView
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_weight="10"
+               android:src="@drawable/line_or"/>
 
         </LinearLayout>
 
@@ -156,8 +166,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:gravity="center">
-
-
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/googleLogo"
@@ -198,5 +206,8 @@
         </LinearLayout>
 
     </LinearLayout>
+
+
+
 
 </RelativeLayout>

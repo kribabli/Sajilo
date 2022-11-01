@@ -3,26 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parentRelative"
     android:layout_width="match_parent"
+    android:background="@color/primary"
     android:layout_height="match_parent"
     tools:context=".LoginModule.SignUpActivity">
 
-    <ImageView
-        android:id="@+id/logoImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/parentRelative"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/logo"
-        tools:ignore="NotSibling" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/linerLayout"
+        android:background="@drawable/white_round_rectangle"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/logo"
+            tools:ignore="NotSibling" />
+
+
+    </LinearLayout>
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_below="@+id/linerLayout"
+    android:layout_height="wrap_content">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/logoImageView"
-        android:layout_marginTop="30dp"
         android:background="@drawable/round_rectangle"
+        android:id="@+id/linerLayout1"
+        android:layout_below="@+id/linerLayout"
         android:orientation="vertical"
         android:weightSum="10"
         tools:ignore="NotSibling">
@@ -31,10 +48,10 @@
         <EditText
             android:id="@+id/userName"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="50dp"
             android:background="@drawable/border_radius"
             android:hint="User Name"
             android:inputType="text"
@@ -46,10 +63,10 @@
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="50dp"
             android:background="@drawable/border_radius"
             android:hint="Email Address"
             android:inputType="textEmailAddress"
@@ -61,10 +78,10 @@
         <EditText
             android:id="@+id/password1"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="50dp"
             android:background="@drawable/border_radius"
             android:hint="Password"
             android:inputType="textVisiblePassword"
@@ -76,10 +93,10 @@
         <EditText
             android:id="@+id/mobile_no"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="50dp"
             android:background="@drawable/border_radius"
             android:hint="Mobile Number"
             android:inputType="number"
@@ -90,11 +107,15 @@
 
         <Button
             android:id="@+id/signUp"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/border_radius"
             android:backgroundTint="@color/white"
+            android:textSize="18sp"
             android:text="SIGNUP"
             android:textColor="#19ADEF" />
 
@@ -108,44 +129,19 @@
             android:textColor="#19ADEF" />
 
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:orientation="horizontal"
+            android:layout_marginTop="40dp"
             android:weightSum="10">
 
-            <View
+            <ImageView
                 android:layout_width="0dp"
-                android:layout_height="1dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="10"
-                android:background="@color/white" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginTop="30dp"
-            android:gravity="center">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/facebookLogo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_facebook_svgrepo_com" />
-
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/googleLogo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="50dp"
-                android:src="@drawable/ic_google_svgrepo_com" />
-
+                android:src="@drawable/line_or" />
 
         </LinearLayout>
 
@@ -153,9 +149,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:layout_weight="10"
             android:orientation="horizontal">
+
 
             <TextView
                 android:layout_width="0dp"
@@ -180,9 +177,15 @@
                 android:textStyle="bold" />
 
 
+
         </LinearLayout>
 
-
     </LinearLayout>
+
+
+</ScrollView>
+
+
+
 
 </RelativeLayout>

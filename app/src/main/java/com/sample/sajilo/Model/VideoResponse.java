@@ -6,20 +6,38 @@ public class VideoResponse {
     String vedio;
     String status;
     String date;
+    String title;
+    String description;
 
 
-    public VideoResponse(String id, String vedio, String status, String date) {
+    public VideoResponse(String id, String vedio, String status, String date, String title, String description) {
         this.id = id;
         this.vedio = vedio;
         this.status = status;
         this.date = date;
+        this.title = title;
+        this.description = description;
     }
-
 
     VideoResponse(){
 
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getId() {
         return id;

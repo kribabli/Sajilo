@@ -69,5 +69,6 @@ dependencies {
     implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.5'
     implementation 'com.airbnb.android:lottie:3.4.0'
     implementation 'pub.hanks:smallbang:1.2.2'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 
 }

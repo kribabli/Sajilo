@@ -55,7 +55,6 @@ public class SignUpActivity extends AppCompatActivity {
         mobile_no = findViewById(R.id.mobile_no);
         login = findViewById(R.id.login);
         signUp = findViewById(R.id.signUp);
-        facebookLogo = findViewById(R.id.facebookLogo);
         googleLogo = findViewById(R.id.googleLogo);
         progressBar=findViewById(R.id.progressBar);
         if(getIntent().hasExtra("email")){

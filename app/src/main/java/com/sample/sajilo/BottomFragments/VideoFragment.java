@@ -1,5 +1,7 @@
 package com.sample.sajilo.BottomFragments;
 
+import static java.security.AccessController.getContext;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,8 +62,10 @@ public class VideoFragment extends Fragment {
                         String id=jsonObject.getString("id");
                         String vedio=jsonObject.getString("vedio");
                         String status=jsonObject.getString("status");
+                        String title=jsonObject.getString("title");
+                        String description=jsonObject.getString("description");
                         String date=jsonObject.getString("date");
-                        VideoResponse videoResponse=new VideoResponse(id,vedio,status,date);
+                        VideoResponse videoResponse=new VideoResponse(id,vedio,status,date,title,description);
                         videoSlider.add(videoResponse);
                     }
                     view.viewpager.setAdapter(new VideoAdapter(videoSlider));

@@ -116,6 +116,7 @@ public class HomeFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray jsonArray=response.getJSONArray("data");
+                    Log.d("Amit","Slider List"+jsonArray);
                     if(response.getString("Result").equalsIgnoreCase("true")){
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject=jsonArray.getJSONObject(i);
@@ -127,7 +128,6 @@ public class HomeFragment extends Fragment {
                             sliderList.add(datum);
                            }
                         displaySliderImage();
-                        Log.d("Amit","Value "+sliderList);
 
                     }
 
@@ -161,14 +161,13 @@ public class HomeFragment extends Fragment {
                             jsonArray = new JSONArray(categoryData);
                             if (jsonArray.length() > 0) {
                                 view.progressBar.setVisibility(View.GONE);
-                                Log.d("Amit","Value "+jsonArray);
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String cat_img = jsonObject.getString("image");
                                     String cat_name = jsonObject.getString("name");
                                     String cat_status = jsonObject.getString("status");
                                     String id = jsonObject.getString("id");
-                                    CategoryDataResponse categoryReponse1 = new CategoryDataResponse(id, cat_name, cat_status, cat_img);
+                                    CategoryDataResponse categoryReponse1 = new CategoryDataResponse(id, cat_name, cat_status, cat_img,"");
                                     mListItem.add(categoryReponse1);
                                 }
                                 adapter = new CategoryAdapter(mListItem, getContext());

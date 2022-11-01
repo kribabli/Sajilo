@@ -8,23 +8,39 @@
 
 
 
-    <androidx.appcompat.widget.Toolbar
+    <LinearLayout
         android:layout_width="match_parent"
-        android:background="@color/primary"
         android:id="@+id/toolbar"
-        android:layout_height="50dp">
+        android:orientation="horizontal"
+        android:background="@drawable/gradient_color_half"
+        android:layout_height="60dp">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/backPress"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/white_back_arrow"/>
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="All SubCategory"
+            android:layout_marginRight="20dp"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="20sp"/>
-    </androidx.appcompat.widget.Toolbar>
+
+    </LinearLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/toolbar"
         android:layout_height="wrap_content"
         >

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class AllSubCategory extends AppCompatActivity {
     RecyclerView recyclerView;
     ProgressBar progressBar;
     LinearLayout lyt_not_found;
+    ImageView backPress;
     ArrayList<SubCategoryResponse> mListItem;
     DatabaseHelper databaseHelper;
     SubCategoryAdapter adapter;
@@ -55,6 +57,7 @@ public class AllSubCategory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_sub_category);
         setInit();
+        handleButtonAction();
         mListItem = new ArrayList<>();
         databaseHelper=new DatabaseHelper(this);
         if(getIntent().hasExtra("catId")){
@@ -63,15 +66,26 @@ public class AllSubCategory extends AppCompatActivity {
         Log.d("Amit","Value111 "+databaseHelper.getFavouriteId());
     }
 
+    private void handleButtonAction() {
+        backPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+    }
+
     private void setInit() {
         recyclerView=findViewById(R.id.recyclerView);
         progressBar=findViewById(R.id.progressBar);
         lyt_not_found=findViewById(R.id.lyt_not_found);
         swipeRefreshLayout=findViewById(R.id.swipeRefreshLayout);
+        backPress=findViewById(R.id.backPress);
         Animation animSlideDown = AnimationUtils.loadAnimation(this,R.anim.slide_down);
         recyclerView.startAnimation(animSlideDown);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         if (NetworkConnection.isConnected(this)) {
             getAllSubCategory();
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -143,5 +157,11 @@ public class AllSubCategory extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

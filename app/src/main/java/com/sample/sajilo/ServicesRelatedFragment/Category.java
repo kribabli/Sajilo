@@ -81,7 +81,7 @@ public class Category extends Fragment {
                                     String cat_name = jsonObject.getString("cat_name");
                                     String cat_status = jsonObject.getString("cat_status");
                                     String id = jsonObject.getString("id");
-                                    CategoryDataResponse categoryReponse1 = new CategoryDataResponse(id, cat_name, cat_status, cat_img);
+                                    CategoryDataResponse categoryReponse1 = new CategoryDataResponse(id, cat_name, cat_status, cat_img,"");
                                     mListItem.add(categoryReponse1);
                                 }
                                 adapter = new CategoryAdapter(mListItem, getContext());
