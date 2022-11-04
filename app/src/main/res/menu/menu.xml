@@ -9,24 +9,28 @@
     <item
         android:id="@+id/my_booking"
         android:enabled="true"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_baseline_calendar_view_week_24"
         android:title="My Booking" />
 
     <item
         android:id="@+id/video"
         android:enabled="true"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_video_logo1"
         android:title="Video" />
 
     <item
         android:id="@+id/my_ride"
         android:enabled="true"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_baseline_car"
         android:title="My Ride" />
 
     <item
         android:id="@+id/shop_now"
         android:enabled="true"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="Shop Now" />
 

@@ -22,13 +22,10 @@
         tools:ignore="NotSibling" />
 
 
-
-
-
-        <LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-            android:layout_below="@+id/logoImageView"
+        android:layout_below="@+id/logoImageView"
         android:layout_marginTop="100dp"
         android:background="@drawable/round_rectangle"
         android:orientation="vertical"
@@ -153,18 +150,18 @@
             android:orientation="horizontal"
             android:weightSum="10">
 
-           <ImageView
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="10"
-               android:src="@drawable/line_or"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:src="@drawable/line_or"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:gravity="center">
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -178,7 +175,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="10"
             android:orientation="horizontal">
 

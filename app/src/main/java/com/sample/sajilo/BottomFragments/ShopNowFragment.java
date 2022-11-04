@@ -93,7 +93,7 @@ public class ShopNowFragment extends Fragment {
                     if(location!=null){
                         Geocoder geocoder=new Geocoder(getContext(), Locale.getDefault());
                         try {
-//                            Log.d("Amit","Value A "+location);
+                            Log.d("Amit","Value A "+location);
                             List<Address> addressList=geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                             pinCode=addressList.get(0).getPostalCode();
                             Log.d("Amit","Value B "+pinCode);

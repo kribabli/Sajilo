@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/blue1"
+            app:itemIconTint="@color/white"
             android:clickable="false"
             app:itemHorizontalTranslationEnabled="true"
             app:labelVisibilityMode="labeled"

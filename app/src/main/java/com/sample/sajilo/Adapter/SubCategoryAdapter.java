@@ -3,10 +3,12 @@ package com.sample.sajilo.Adapter;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.sample.sajilo.AllSubCategory;
+import com.sample.sajilo.All_information_Services;
 import com.sample.sajilo.BottomFragments.Response.SubCategoryResponse;
 import com.sample.sajilo.Common.DatabaseHelper;
 import com.sample.sajilo.Model.CategoryDataResponse;
@@ -74,6 +77,17 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
 
         });
 
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, All_information_Services.class);
+                intent.putExtra("service",list.get(position).getCategory());
+                intent.putExtra("subservice",list.get(position).getId());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -85,12 +99,14 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
         ImageView cat_Image_View,favrouite;
         TextView cat_Name;
         TextView subCategory_name;
+        LinearLayout layout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             cat_Image_View=itemView.findViewById(R.id.cat_Image_View);
             favrouite=itemView.findViewById(R.id.favrouite);
             cat_Name=itemView.findViewById(R.id.cat_Name);
             subCategory_name=itemView.findViewById(R.id.subCategory_name);
+            layout=itemView.findViewById(R.id.layout);
         }
     }
 }

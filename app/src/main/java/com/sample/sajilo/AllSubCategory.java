@@ -46,7 +46,7 @@ public class AllSubCategory extends AppCompatActivity {
     ArrayList<SubCategoryResponse> mListItem;
     DatabaseHelper databaseHelper;
     SubCategoryAdapter adapter;
-    String SubCategoryUrl= ConstantClass.Base_Url+"subservice.php";
+    String SubServiceUrl= ConstantClass.Base_Url+"subservice.php";
     String Id="";
     SwipeRefreshLayout swipeRefreshLayout;
     public static String favourite_id;
@@ -107,7 +107,7 @@ public class AllSubCategory extends AppCompatActivity {
     private void getAllSubCategory() {
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue queue = Volley.newRequestQueue(AllSubCategory.this);
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, SubCategoryUrl, new Response.Listener<String>() {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, SubServiceUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
