@@ -15,9 +15,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.android.volley.Request;
@@ -27,12 +27,11 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.sample.sajilo.Adapter.AllCategoryAdapter;
+import com.sample.sajilo.Grocery.GroceryAdapter.AllCategoryAdapter;
 import com.sample.sajilo.Common.ConstantClass;
 import com.sample.sajilo.Common.NetworkConnection;
 import com.sample.sajilo.Model.CategoryDataResponse;
 import com.sample.sajilo.R;
-import com.sample.sajilo.ServicesRelatedFragment.CategoryAdapter;
 import com.sample.sajilo.databinding.FragmentShopNowBinding;
 
 import org.json.JSONArray;
@@ -70,6 +69,7 @@ public class ShopNowFragment extends Fragment {
             fusedLocationProviderClient= LocationServices.getFusedLocationProviderClient(getContext());
             getLastLocation();
             getAllCategory();
+            getSearchData();
             view.swipeRefreshLayout.setOnRefreshListener(() -> {
                 view.swipeRefreshLayout.setRefreshing(false);
                 view.recyclerView.startAnimation(animSlideDown);
@@ -83,6 +83,38 @@ public class ShopNowFragment extends Fragment {
         }
 
         return view.getRoot();
+    }
+
+    private void getSearchData() {
+        view.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
+
+    }
+
+    private void filterList(String text) {
+        List<CategoryDataResponse> filteredList= new ArrayList<>();
+        for(CategoryDataResponse categoryDataResponse: mListItem){
+            if(categoryDataResponse.getName().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(categoryDataResponse);
+            }
+        }
+        if(filteredList.isEmpty()){
+            Toast.makeText(getContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        }
+        else{
+          adapter.setFilterList(filteredList);
+        }
+
     }
 
     private void getLastLocation() {

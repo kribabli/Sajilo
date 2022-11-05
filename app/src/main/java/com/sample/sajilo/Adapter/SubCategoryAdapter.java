@@ -64,7 +64,7 @@ public class SubCategoryAdapter extends RecyclerView.Adapter<SubCategoryAdapter.
             if(databaseHelper.getFavouriteById(list.get(position).getId(), DatabaseHelper.TABLE_FAVOURITE)){
                 databaseHelper.removeFavouriteById(list.get(position).getId(), DatabaseHelper.TABLE_FAVOURITE);
                 Toast.makeText(context, "Favourite has been removed", Toast.LENGTH_SHORT).show();
-                holder.favrouite.setImageResource(R.drawable.favrouite);
+                holder.favrouite.setImageResource(R.drawable.ic_baseline_favorite_border_24);
             }
             else{
                 fav.put(DatabaseHelper.FAVOURITE_ID, list.get(position).getId());

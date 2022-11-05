@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void initMethod() {
         drawerLayout = findViewById(R.id.drawerLayout);
+        Log.d("Amit","Value "+helperData.getUserId());
     }
 
     private void setAction() {

@@ -77,7 +77,5 @@ public class VideoFragment extends Fragment {
 
         });
         queue.add(jsonObjectRequest);
-
-
     }
 }

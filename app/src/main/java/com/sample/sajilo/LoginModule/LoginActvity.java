@@ -178,6 +178,14 @@ public class LoginActvity extends AppCompatActivity {
                             else{
                                 refer_code=jsonObject1.getString("refferal_code");
                             }
+                            if(jsonObject1.isNull("image")){
+
+                            }
+                            else{
+                                Log.d("Amit","Value check 111 "+jsonObject1.getString("image"));
+                                helperData.saveProfileImage(Uri.parse(jsonObject1.getString("image")));
+                            }
+
                             helperData.saveLogin(jsonObject1.getString("id"), jsonObject1.getString("username"), jsonObject1.getString("email"),jsonObject1.getString("mobile"),refer_code);
                             Toast.makeText(LoginActvity.this, "" + response.getString("ResponseMsg"), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActvity.this, MainActivity.class);

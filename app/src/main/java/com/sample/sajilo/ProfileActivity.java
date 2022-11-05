@@ -2,7 +2,6 @@ package com.sample.sajilo;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -12,43 +11,26 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.github.dhaval2404.imagepicker.util.FileUriUtils;
 import com.sample.sajilo.BottomFragments.Response.ProfileResponse;
-import com.sample.sajilo.Common.ConstantClass;
 import com.sample.sajilo.Common.HelperData;
 import com.sample.sajilo.Common.NetworkConnection;
-import com.sample.sajilo.Model.CategoryReponse;
 import com.sample.sajilo.Retrofit.ApiClient;
-import com.sample.sajilo.databinding.ActivityMyProfileBinding;
-import com.sample.sajilo.databinding.ActivityProfileBinding;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.RequestBody;
 
-import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -62,8 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
     Button update_btn_profile;
     CircleImageView user_profile;
     ImageView lytCameraPick;
-    Toolbar toolbar;
-    TextView backPress;
+    ImageView backPressImage;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -77,8 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
         update_btn_profile = findViewById(R.id.update_btn_profile);
         user_profile = findViewById(R.id.user_profile);
         lytCameraPick = findViewById(R.id.lytCameraPick);
-        toolbar = findViewById(R.id.toolbar_main);
-        backPress = findViewById(R.id.backPress);
+        backPressImage = findViewById(R.id.backPressImage);
         name_txt.setText("" + helperData.getUserName());
         email_txt.setText("" + helperData.getUserEmail());
         mobile_txt.setText("" + helperData.getMobile());
@@ -88,12 +68,10 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void setAction() {
 
-        backPress.setOnClickListener(new View.OnClickListener() {
+        backPressImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-
-
             }
         });
 
@@ -177,11 +155,9 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<ProfileResponse> call, Throwable t) {
                 progressDialog.dismiss();
-
             }
         });
 
@@ -207,5 +183,11 @@ public class ProfileActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

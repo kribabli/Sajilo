@@ -86,7 +86,7 @@
                 android:id="@+id/favrouite"
                 android:layout_gravity="right"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/favrouite"/>
+                android:src="@drawable/ic_baseline_favorite_border_24"/>
         </LinearLayout>
 
 

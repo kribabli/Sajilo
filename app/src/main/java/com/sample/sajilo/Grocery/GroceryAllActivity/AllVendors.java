@@ -1,6 +1,4 @@
-package com.sample.sajilo;
-
-import static java.security.AccessController.getContext;
+package com.sample.sajilo.Grocery.GroceryAllActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,14 +16,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.sample.sajilo.Adapter.All_vendors_list_Adapter;
+import com.sample.sajilo.Grocery.GroceryAdapter.All_vendors_list_Adapter;
 import com.sample.sajilo.Common.ConstantClass;
 import com.sample.sajilo.Common.NetworkConnection;
-import com.sample.sajilo.Model.CategoryDataResponse;
 import com.sample.sajilo.Model.VendorsStoreData;
-import com.sample.sajilo.ServicesRelatedFragment.CategoryAdapter;
+import com.sample.sajilo.R;
 import com.sample.sajilo.databinding.ActivityAllVendorsBinding;
 
 import org.json.JSONArray;
@@ -67,7 +63,7 @@ public class AllVendors extends AppCompatActivity {
     }
 
     private void setInitAction() throws JSONException {
-        Animation animSlideDown = AnimationUtils.loadAnimation(this,R.anim.slide_down);
+        Animation animSlideDown = AnimationUtils.loadAnimation(this, R.anim.slide_down);
         activityAllVendorsBinding.recyclerView.startAnimation(animSlideDown);
         activityAllVendorsBinding.recyclerView.setHasFixedSize(true);
         activityAllVendorsBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -101,6 +97,10 @@ public class AllVendors extends AppCompatActivity {
         }
 
     }
+
+
+
+
 
     private void getAllVendorsData(String category, String pinCode) throws JSONException {
 

@@ -1,140 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/new_border_card_view"
-    android:backgroundTint="#D3FAFF"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:layout_marginTop="10dp"
-    android:orientation="vertical"
-    app:cardCornerRadius="10dp"
-    app:cardUseCompatPadding="false"
-    app:elevation="0dp">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/layout">
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="100">
-            
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_margin="5dp"
-                android:layout_height="120dp"
-                android:layout_weight="30">
-
-                <ImageView
-                    android:id="@+id/inside_imageview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dip"
-                    android:layout_marginTop="5dip"
-                    android:src="@drawable/shopnew" />
-
-                <ImageView
-                    android:id="@+id/outside_imageview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/inside_imageview"
-                    android:layout_alignBottom="@id/inside_imageview"
-                    android:layout_alignLeft="@id/inside_imageview"
-                    android:layout_alignRight="@id/inside_imageview"
-                    android:scaleType="fitXY" />
-                
-                
-            </RelativeLayout>
-
+            android:layout_margin="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/lvl_click"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical"
-                android:layout_weight="60">
+                android:background="@color/grocery_back_color"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:text="@string/app_name"
-                    android:textSize="15sp"
-                    android:id="@+id/title"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Addresss of Shop"
-                    android:drawableLeft="@drawable/ic_baseline_domain_add_24"
-                    android:drawablePadding="4dp"
-                    android:id="@+id/address_shop"
-                    android:textStyle="normal"
-                    android:textSize="15sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/contactNumber"
-                    android:layout_marginTop="3dp"
-                    android:drawableLeft="@drawable/ic_baseline_call_24"
-                    android:text="+91 97771130302"
-                    android:drawablePadding="4dp"/>
-
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/button_shape"
-                    android:text="Explore"
-                    android:id="@+id/explore"/>
-
-
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="15"
-                android:orientation="vertical"
-                android:layout_marginTop="5dp">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/favrouite"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/favrouite"/>
+                    android:id="@+id/img_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130dp"
+                    android:scaleType="fitCenter"
+                    android:background="@color/grocery_back_color"
+                    android:layout_gravity="center"
+                    android:src="@drawable/fresh" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="100"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_weight="25"
+                        android:textSize="15sp"
+                        android:id="@+id/textPrice"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/black"
+                        android:text="200"
+                        android:drawableLeft="@drawable/rupee_icon"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_weight="25"
+                        android:visibility="invisible"
+                        android:id="@+id/discountedOffers"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/gray"
+                        android:text="200"
+                        android:drawableLeft="@drawable/rupee_icon"/>
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="20"/>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/plus_icon"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/plus_icon"/>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/remove_cart"
+                        android:visibility="gone"
+                        android:src="@drawable/minus_icon"/>
+
+
+                </LinearLayout>
+
+
+
             </LinearLayout>
 
-        </LinearLayout>
+            </LinearLayout>
 
 
 
-
-
-
-
-
-
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/lvl_offer"
+        android:layout_width="70dp"
+        android:layout_height="25dp"
+        android:background="@drawable/offer_background"
+        android:gravity="center">
 
+        <TextView
+            android:id="@+id/txt_offer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

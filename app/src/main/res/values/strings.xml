@@ -15,4 +15,14 @@
     <string name="back_key">Please click back again to exit</string>
     <string name="example_string">Line 1\Line2\Line n</string>
     <string name="search">Search</string>
+    <string name="empty_cart">Cart Empty</string>
+    <string name="subTotal">subtotal</string>
+    <string name="discount_on_order">Discount on Order</string>
+    <string name="coupon_discount">Coupon Discount</string>
+    <string name="delivery_charges">Delivery Charges</string>
+    <string name="total">Total</string>
+    <string name="number">5000</string>
+    <string name="number1">500</string>
+    <string name="free">FREE</string>
+    <string name="proceed_to_pay">Proceed to Pay</string>
 </resources>

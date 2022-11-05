@@ -1,18 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/black">
 
     <VideoView
         android:id="@+id/videoView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        app:layout_constraintVertical_bias="0.0" />
+
     <ProgressBar
         android:id="@+id/progress_circular"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,104 +24,108 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="30dp"
         android:layout_height="30dp"/>
-
-
-
     <LinearLayout
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="200dp"
-        android:orientation="vertical"
+        android:id="@+id/linearLayout"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <xyz.hanks.library.bang.SmallBangView
-            android:id="@+id/image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:layout_constraintEnd_toEndOf="@+id/videoView"
-            app:layout_constraintStart_toStartOf="@+id/videoView"
-            app:layout_constraintTop_toTopOf="@+id/videoView"
-            tools:ignore="MissingConstraints">
-
-            <ImageView
-                android:id="@+id/likedImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/heart_selector" />
-
-        </xyz.hanks.library.bang.SmallBangView>
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/img2"
-            android:layout_marginTop="10dp"
-            android:id="@+id/shareImage"/>
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/img3"
-            android:layout_marginTop="30dp"
-            android:id="@+id/comment_image"/>
-
-
-
-
-
-
-    </LinearLayout>
-
-
-
-
-
-
-    <LinearLayout
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="80dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/header_title"
-            android:paddingStart="5dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
-            android:shadowColor="@android:color/black"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="15"
-            android:text="Header Title"
-            android:textColor="@android:color/white"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="bottom"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/header_title"
+                android:paddingStart="9dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tag_state_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="15"
+                android:text="@string/app_name"
+                android:textColor="#fff"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/tag_state_description"
-            android:paddingStart="5dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
-            android:textStyle="bold"
-            android:text="All Video Description is Showing Here Information About\n "
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="15"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
-            android:shadowColor="@android:color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:src="@drawable/ic_userprofile"
+                android:layout_gravity="end"
+                android:padding="2dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+            <xyz.hanks.library.bang.SmallBangView
+                android:id="@+id/image"
+                android:layout_gravity="end"
+                android:padding="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="18dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp">
+
+                <ImageView
+                    android:id="@+id/likedImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/heart_selector" />
+
+            </xyz.hanks.library.bang.SmallBangView>
+
+            <ImageView
+                android:src="@drawable/img2"
+                android:layout_gravity="end"
+                android:padding="6dp"
+                android:id="@+id/shareImage"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="18dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+            <ImageView
+                android:src="@drawable/img1"
+                android:layout_gravity="end"
+                android:padding="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="18dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

@@ -6,7 +6,6 @@ public class ProfileResponse {
 
     @SerializedName("status")
     String status;
-
     @SerializedName("message")
     String message;
 

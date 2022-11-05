@@ -1,6 +1,6 @@
 package com.sample.sajilo.Model;
 
-public class CategoryDataResponse {
+public class  CategoryDataResponse {
     String id;
     String name;
     String status;

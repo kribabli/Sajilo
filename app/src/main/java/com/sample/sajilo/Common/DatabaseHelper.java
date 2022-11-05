@@ -16,7 +16,6 @@ public  class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public static final String TABLE_FAVOURITE = "FAVOURITE";
-
     public static final String TABLE_VIDEO_LIKED="LIKED_VIDEO";
 
 

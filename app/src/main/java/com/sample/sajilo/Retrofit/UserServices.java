@@ -3,11 +3,11 @@ package com.sample.sajilo.Retrofit;
 
 import com.sample.sajilo.BottomFragments.Response.ProfileResponse;
 import com.sample.sajilo.Model.CategoryReponse;
-import com.squareup.okhttp.RequestBody;
 
 import java.util.Map;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Multipart;
@@ -23,9 +23,9 @@ public interface UserServices {
     @Multipart
     @POST("userapi/updateprofile.php")
     Call<ProfileResponse>UpdateProfileData(
-            @Part("id") RequestBody id,
-            @Part("username") RequestBody username,
-            @Part("mobile") RequestBody mobile,
+            @Part("id") okhttp3.RequestBody id,
+            @Part("username") okhttp3.RequestBody username,
+            @Part("mobile") okhttp3.RequestBody mobile,
             @Part("email") RequestBody email,
             @Part MultipartBody.Part image
     );

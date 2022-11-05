@@ -1,5 +1,6 @@
-package com.sample.sajilo.Adapter;
+package com.sample.sajilo.Grocery.GroceryAdapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -14,15 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.sample.sajilo.AllSubCategory;
-import com.sample.sajilo.AllVendors;
+import com.sample.sajilo.Grocery.GroceryAllActivity.AllVendors;
 import com.sample.sajilo.Model.CategoryDataResponse;
 import com.sample.sajilo.R;
-import com.sample.sajilo.ServicesRelatedFragment.CategoryAdapter;
 
 import java.util.List;
 
-public class AllCategoryAdapter extends RecyclerView.Adapter<AllCategoryAdapter.MyViewHolder> {
+public class AllCategoryAdapter extends RecyclerView.Adapter<AllCategoryAdapter.MyViewHolder>  {
 
     List<CategoryDataResponse> list;
     Context context;
@@ -30,6 +29,12 @@ public class AllCategoryAdapter extends RecyclerView.Adapter<AllCategoryAdapter.
     public AllCategoryAdapter(List<CategoryDataResponse> list, Context context) {
         this.list = list;
         this.context = context;
+    }
+
+    public void setFilterList(List<CategoryDataResponse> filteredList){
+        this.list=filteredList;
+        notifyDataSetChanged();
+
     }
 
     @NonNull
@@ -40,7 +45,7 @@ public class AllCategoryAdapter extends RecyclerView.Adapter<AllCategoryAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AllCategoryAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AllCategoryAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.text.setText("" + list.get(position).getName());
         Glide.with(context)
                 .load("http://adminapp.tech/Sajilo/" + list.get(position).getImage())
@@ -67,6 +72,8 @@ public class AllCategoryAdapter extends RecyclerView.Adapter<AllCategoryAdapter.
     public int getItemCount() {
         return list.size();
     }
+
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         RoundedImageView image;
